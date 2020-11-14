@@ -15,6 +15,7 @@
 
     
     <link rel="stylesheet" href="client/css/main.css">
+    <link rel="stylesheet" href="client/css/loading.css">
     
     <script defer src='client/controller/header.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">

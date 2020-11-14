@@ -1,4 +1,3 @@
-
 /**
  * The idea is to display X posts and have a bottom that when clicked displays X more posts
  * In order to display the respective page of the post there will be a single event listener
@@ -17,42 +16,45 @@ const POSTS_URL = 'http://localhost/projects/MyBlog/blog/posts/newData.php';
 
 //todo MAIN code
 
-export default class Blog{
+export default class Blog {
     /**
      * Adds an event to the container of the posts that redirects to the respective post when it is clicked
      */
-    #addContainerEvent(){
-        this.container.addEventListener('click',(e)=>{ //? Remember that it is working cause arrows functions preserve parent 'this' object
-            this.clickableElements.forEach((post)=>{
-                post.clickable.forEach((el)=>{
-                    if(el===e.target){
+    
+    #addContainerEvent() {
+        this.container.addEventListener('click', (e) => { //? Remember that it is working cause arrows functions preserve parent 'this' object
+            this.clickableElements.forEach((post) => {
+                post.clickable.forEach((el) => {
+                    if (el === e.target) {
                         //open post;            //! WAITING BACKEND
                         console.log(post.url);
-                        window.open(post.url,"_self");
+                        window.open(post.url, "_self");
                     }
                 })
             });
         });
     }
-    constructor(container,categoriesContainer){
+    constructor(container, categoriesContainer, btnLoadMore,loadingSpinner=undefined) {
         this.category = "All";
         this.categoriesContainer = categoriesContainer;
         this.container = container;
+        this.btnLoadMore = btnLoadMore;
+        this.loadingSpinner = loadingSpinner;
         this.hello = 0;
         this.offset = 0;
-        this.clickableElements = [];    //array of objects with clickable elements and its respective post Id
+        this.clickableElements = []; //array of objects with clickable elements and its respective post Id
         this.#addContainerEvent();
     }
 
 
-    addPost(postInfo){
+    addPost(postInfo) {
         let postSummary = document.createElement("li");
         postSummary.classList.add("post-summary");
         let imageWrapper = document.createElement("div");
         imageWrapper.classList.add("post-image-wrapper");
 
         let imgPost = document.createElement("img");
-        
+
         imgPost.src = postInfo.mainImage;
         // let mainCategory = document.createElement('div');    //!main category
         // mainCategory.textContent = postInfo
@@ -60,22 +62,22 @@ export default class Blog{
         let authorInfo = document.createElement('div');
         authorInfo.classList.add('author-info');
         let authorPhotoLink = document.createElement("a");
-        authorPhotoLink.setAttribute('href','../about/');           //!put correct link
+        authorPhotoLink.setAttribute('href', '../about/'); //!put correct link
         let authorPhoto = document.createElement('img');
         authorPhoto.classList.add('author-photo');
         console.log(postInfo.authorInfo.profileImage);
-        if(postInfo.authorInfo.profileImage){
-            authorPhoto.src=postInfo.authorInfo.profileImage;
-        }else{
+        if (postInfo.authorInfo.profileImage) {
+            authorPhoto.src = postInfo.authorInfo.profileImage;
+        } else {
             authorPhoto.src = "../Public/images/defaultProfileImage.png";
         }
         authorPhotoLink.appendChild(authorPhoto);
         let authorName = document.createElement('span');
         authorName.classList.add("author-name");
-        authorName.textContent = postInfo.authorInfo.firstName +" "+postInfo.authorInfo.lastName1;
-        authorInfo.append(authorPhotoLink,authorName);
+        authorName.textContent = postInfo.authorInfo.firstName + " " + postInfo.authorInfo.lastName1;
+        authorInfo.append(authorPhotoLink, authorName);
 
-        imageWrapper.append(imgPost,authorInfo);
+        imageWrapper.append(imgPost, authorInfo);
 
         let post = document.createElement("div");
         post.classList.add("post");
@@ -93,46 +95,55 @@ export default class Blog{
         postBodyText.classList.add("fade");
         postBodyText.textContent = postInfo.body;
         let postBodyReadMore = document.createElement("a");
-        postBodyReadMore.setAttribute('href','#');
+        postBodyReadMore.setAttribute('href', '#');
         postBodyReadMore.textContent = "Read More >>";
-        postBodyTextWrapper.append(postBodyText,postBodyReadMore);
+        postBodyTextWrapper.append(postBodyText, postBodyReadMore);
 
         postBody.appendChild(postBodyTextWrapper);
 
-        post.append(postTitle,postDate,postBody);
+        post.append(postTitle, postDate, postBody);
 
-        postSummary.append(imageWrapper,post);
+        postSummary.append(imageWrapper, post);
         this.container.appendChild(postSummary);
-        this.clickableElements.push( {
-            url:postInfo.url,
-            id:postInfo.id,
-            clickable:[imgPost,postTitle,postBodyReadMore]
+        this.clickableElements.push({
+            url: postInfo.url,
+            id: postInfo.id,
+            clickable: [imgPost, postTitle, postBodyReadMore]
         });
     }
     //displays more posts
-    async loadMore(){
-        if(this.loading){
+    async loadMore() {
+        if (this.loading) {
             return false;
         }
         this.loading = true;
-        let response = await this.getPosts(this.offset,this.category);
+        this.displayLoading();
+        let response = await this.getPosts(this.offset, this.category);
         console.log(response);
-        response.results.forEach((post)=>{
+        response.results.forEach((post) => {
             this.addPost(post);
         });
-        this.offset +=response.results.length;
+        this.offset += response.results.length;
         this.loading = false;
+        this.hideLoading();
+        if (response.results.length < POSTS_PER_PAGE) {
+            console.log('finish');
+            this.btnLoadMore.classList.add('hidden');
+            return false;
+        }
+        this.btnLoadMore.classList.remove('hidden');
+        return true;
     }
-    async printCategories(){
+    async printCategories() {
         let categories = await this.getCategories();
         this.categories = categories;
         this.categoriesContainer.innerHTML = "";
-        categories.forEach(category=>{
+        categories.forEach(category => {
             let newCategory = document.createElement('li');
             newCategory.textContent = category;
-            newCategory.addEventListener('click',e=>{
+            newCategory.addEventListener('click', e => {
                 this.offset = 0;
-                this.category =category;
+                this.category = category;
                 this.container.innerHTML = "";
                 this.loadMore();
             });
@@ -140,41 +151,44 @@ export default class Blog{
         });
         return true;
     }
-    init(){
+    init() {
         this.container.innerHTML = '';
         let data = window.location.href.split('category=');
         console.log(data[1]);
 
-        if(data.length>1){
+        if (data.length > 1) {
             console.log(this.categories);
             console.log()
-            if(this.categories.indexOf(data[1])!==-1){
+            if (this.categories.indexOf(data[1]) !== -1) {
                 console.log(data[0]);
                 this.category = data[1];
             }
         }
         this.loadMore();
     }
-    async textSearch(){
+    async textSearch() {
         //! FINISH
     }
 
 
-    getPosts(offset,category="All"){
-        let url = POSTS_URL +"?offset="+offset+"&limit="+POSTS_PER_PAGE+"&category="+category;
+    getPosts(offset, category = "All") {
+        let url = POSTS_URL + "?offset=" + offset + "&limit=" + POSTS_PER_PAGE + "&category=" + category;
         return fetch(url)
-        .then(resp=>resp.json());
+            .then(resp => resp.json());
     }
-    
-    getCategories(){
-        let url = POSTS_URL+"?categories";
+
+    getCategories() {
+        let url = POSTS_URL + "?categories";
         return fetch(url)
-        .then(resp=>resp.json());
+            .then(resp => resp.json());
     }
+
+    //Displays the loading animation
+    displayLoading() {
+        this.loadingSpinner.classList.remove("hidden");
+    }
+    hideLoading() {
+        this.loadingSpinner.classList.add("hidden");
+    }
+
 }
-
-
-
-
-
-

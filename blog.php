@@ -20,6 +20,15 @@ require 'app/view/templates/header.php';
             <li>MySql</li>
             <li>Random</li>
         </ul>
+
+        <div id='loading-spinner-id' class="loadingio-spinner-cube-d4ujiebb12h center">
+            <div class="ldio-18ly8xy9adv">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
         <div id="posts-container-id" class="posts-container center max-width">
             <ul class="posts-page">
 
@@ -34,10 +43,10 @@ require 'app/view/templates/header.php';
 
 
     </div>
+</main>
 
 
 
-
-    <?php
-    require 'app/view/templates/footer.php';
-    ?>
+<?php
+require 'app/view/templates/footer.php';
+?>
