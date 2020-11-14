@@ -133,8 +133,8 @@ class Db
     /**
      * Executes the given query scaping the set parameters
      * @access public
-     * @param string $query
-     * @param array $parameter
+     * @param string $query sql query with question mark placeholders (?)
+     * @param array $parameter (optional) the correspondent values of the ? placeholders. If not indicate it will be understood that there are not ? placeholders
      * @return PDOStatement
      */
     public static function execute(string $query, array $parameter = [])
