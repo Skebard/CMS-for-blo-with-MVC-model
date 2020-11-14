@@ -158,9 +158,9 @@ class Db
 // $stmt->execute([]);
 
 
-if ($result = Db::execute('SELECT * FROM users')) {
+// if ($result = Db::execute('SELECT * FROM users')) {
 
-    echo var_dump($result->fetchAll());
-}
+//     echo var_dump($result->fetchAll());
+// }
 
 //$stmt = $conn->exec('CREATE TABLE usersa ( id INT AUTO_INCREMENT PRIMARY KEY)');
