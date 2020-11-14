@@ -8,13 +8,6 @@
 const POSTS_PER_PAGE = 5;
 const POSTS_URL = 'http://localhost/projects/MyBlog/blog/posts/newData.php';
 
-//todo HTML elemens
-//let loadingHTML = document.getElementById("loading-id");
-
-//let pagination = document.getElementById("pagination-id");
-//let postsOverview = document.getElementById("posts-overview-id");
-
-//todo MAIN code
 
 export default class Blog {
     /**
@@ -113,11 +106,13 @@ export default class Blog {
     }
     //displays more posts
     async loadMore() {
+        //avoid multiple calls to the server (imagine that the user starts clicking many times to the button)
         if (this.loading) {
             return false;
         }
         this.loading = true;
         this.displayLoading();
+        this.btnLoadMore.classList.add('hidden');
         let response = await this.getPosts(this.offset, this.category);
         console.log(response);
         response.results.forEach((post) => {
@@ -125,6 +120,7 @@ export default class Blog {
         });
         this.offset += response.results.length;
         this.loading = false;
+        this.btnLoadMore.classList.add('hidden');
         this.hideLoading();
         if (response.results.length < POSTS_PER_PAGE) {
             console.log('finish');
@@ -183,7 +179,7 @@ export default class Blog {
             .then(resp => resp.json());
     }
 
-    //Displays the loading animation
+    //Display loading animation
     displayLoading() {
         this.loadingSpinner.classList.remove("hidden");
     }

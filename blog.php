@@ -21,6 +21,14 @@ require 'app/view/templates/header.php';
             <li>Random</li>
         </ul>
 
+
+        <div id="posts-container-id" class="posts-container center max-width">
+            <ul class="posts-page">
+
+
+            </ul>
+
+        </div>
         <div id='loading-spinner-id' class="loadingio-spinner-cube-d4ujiebb12h center">
             <div class="ldio-18ly8xy9adv">
                 <div></div>
@@ -28,13 +36,6 @@ require 'app/view/templates/header.php';
                 <div></div>
                 <div></div>
             </div>
-        </div>
-        <div id="posts-container-id" class="posts-container center max-width">
-            <ul class="posts-page">
-
-
-            </ul>
-
         </div>
         <div class="load-more center" id='load-more-btn-id'>
             <button class="center btn-load-more">load more </button>

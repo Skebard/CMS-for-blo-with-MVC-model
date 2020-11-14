@@ -53,14 +53,14 @@
             <div id='modal-nav-menu-id' class='modal-nav-menu hidden'>
                 <i id="btn-close-modal-menu" class="fas fa-times"></i>
                 <ul id="nav-menu-id" class='select-section'>
-                    <li  <?php echo $current_dir==='blog'?'class="active"':''; ?>>
-                        <a href= <?php echo $current_dir==='blog'?'#':'../blog';?>>Blog</a>
+                    <li  <?php echo $current_file_name==='blog.php'?'class="active"':''; ?>>
+                        <a href= <?php echo $current_file_name==='blog.php'?'#':'../blog';?>>Blog</a>
                     </li>
-                    <li  <?php echo $current_dir==='about'?'class="active"':''; ?>>
-                    <a href= <?php echo $current_dir==='about'?'#':'../about';?>>About</a>
+                    <li  <?php echo $current_file_name==='about.php'?'class="active"':''; ?>>
+                    <a href= <?php echo $current_file_name==='about.php'?'#':'../about';?>>About</a>
                     </li>
-                    <li <?php echo $current_dir==='contact'?'class="active"':''; ?>>
-                    <a href= <?php echo $current_dir==='contact'?'#':'../contact';?>>Contact</a>
+                    <li <?php echo $current_file_name==='contact.php'?'class="active"':''; ?>>
+                    <a href= <?php echo $current_file_name==='contact.php'?'#':'../contact';?>>Contact</a>
                     </li>
                 </ul>
             </div>

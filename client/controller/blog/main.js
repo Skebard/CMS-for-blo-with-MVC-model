@@ -18,6 +18,3 @@ let loadingSpinner = document.getElementById('loading-spinner-id');
     });
 })();
 
-
-//search by main category
-
