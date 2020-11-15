@@ -21,6 +21,9 @@ class BlogController{
         }
         return $authorInfo;
     }
+    public static function getPostsByText(string $text){
+        return Blog::getPostsByText($text,'published');
+    }
 }
 
 //var_dump(BlogController::getCategoriesNames());

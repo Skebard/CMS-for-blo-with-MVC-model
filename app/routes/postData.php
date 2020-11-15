@@ -35,10 +35,17 @@ if($_SERVER['REQUEST_METHOD']!=='GET'){
         $limit = isset($_GET['limit'])? intval($_GET['limit']): null;
         $offset = isset($_GET['offset'])? intval($_GET['offset']): null;
         $category = $_GET['category'] ?? null;
+        $text = $_GET['text'] ?? null;
         $response->limit = $limit;
         $response->offset = $offset;
         $response->results = [];
-        $posts = BlogController::getPostsByCategory($limit,$offset,$category);
+
+        $posts;
+        if($text){
+            $posts = BlogController::getPostsByText($text);
+        }else{
+            $posts = BlogController::getPostsByCategory($limit,$offset,$category);
+        }
         $response->posts = $posts;
         $response->category = $category;
         //var_dump($results);

@@ -9,8 +9,8 @@ require 'app/view/templates/header.php';
 
     <div id="posts-overview-id" class="page-wrapper">
         <div class='search-wrapper max-width'>
-            <input type='text' placeholder="Search">
-            <i class="fas fa-search"></i>
+            <input id='search-input-id' type='text' placeholder="Search">
+            <i id='search-btn-id' class="fas fa-search"></i>
         </div>
         <ul class="categories-tags center max-width">
             <li>Javascript</li>

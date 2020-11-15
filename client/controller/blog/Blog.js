@@ -34,6 +34,8 @@ export default class Blog {
         this.container = container;
         this.btnLoadMore = btnLoadMore;
         this.loadingSpinner = loadingSpinner;
+        this.modeText = false; //flag that indicates to search by text
+        this.text = '';
         this.hello = 0;
         this.offset = 0;
         this.clickableElements = []; //array of objects with clickable elements and its respective post Id
@@ -114,11 +116,18 @@ export default class Blog {
         this.loading = true;
         this.displayLoading();
         this.btnLoadMore.classList.add('hidden');
-        let response = await this.getPosts(this.offset, this.category);
+
+        let response;
+        if(this.modeText == true){
+            response = await this.getPostsByText(this.offset, this.text);
+        }else{
+            response = await this.getPosts(this.offset, this.category);
+        }
         console.log(response);
         response.results.forEach((post) => {
             this.addPost(post);
         });
+
         this.offset += response.results.length;
         this.loading = false;
         this.btnLoadMore.classList.add('hidden');
@@ -142,6 +151,7 @@ export default class Blog {
             let newCategory = document.createElement('li');
             newCategory.textContent = category;
             newCategory.addEventListener('click', e => {
+                this.modeText = false; 
                 this.offset = 0;
                 this.category = category;
                 this.container.innerHTML = "";
@@ -166,8 +176,20 @@ export default class Blog {
         }
         this.loadMore();
     }
-    async textSearch() {
+    async textSearch(text) {
+        this.modeText = true;
+        this.text=text;
+        this.container.innerHTML = '';
+        this.loadMore();
         //! FINISH
+
+        //event listener btn
+        //send request with text
+        //get response
+        //print results
+        //PROBLEM: we can not use loadMore cause it calls the getPosts method
+        //SOLUTION: add flag that indicates if we are searching for text or not
+
     }
 
 
@@ -175,6 +197,12 @@ export default class Blog {
         let url = NEW_POSTS_URL + "?offset=" + offset + "&limit=" + POSTS_PER_PAGE + "&category=" + category;
         return fetch(url)
             .then(resp => resp.json());
+    }
+
+    getPostsByText(offset,text){
+        let url = NEW_POSTS_URL  + "?offset=" + offset + "&limit=" + POSTS_PER_PAGE+"&text="+text;
+        return fetch(url)
+        .then(resp=>resp.json());
     }
 
     getCategories() {

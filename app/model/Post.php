@@ -114,10 +114,9 @@ class Post{
         $stmt = Db::execute($sql,[$status]);
         return $stmt->fetchAll();
     }
-
 }
 
-var_dump(Post::getPostsByText('a','published'));
+//var_dump(Post::getPostsByText('a','published'));
 
 // $posts = Post::getPosts('published',5,9,null,null,null,8);
 // $allPosts = Post::getAllPosts();
