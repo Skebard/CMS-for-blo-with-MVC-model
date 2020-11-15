@@ -20,6 +20,11 @@ let searchInput = document.getElementById('search-input-id');
         console.log(searchInput.value);
         myBlog.textSearch(searchInput.value);
     })
+    searchInput.addEventListener('keydown',e=>{
+        if(e.key==='Enter'){
+            myBlog.textSearch(searchInput.value);
+        }
+    })
 
 })();
 

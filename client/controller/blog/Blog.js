@@ -177,7 +177,10 @@ export default class Blog {
         this.loadMore();
     }
     async textSearch(text) {
-        this.modeText = true;
+        if(!this.modeText){
+            this.modeText = true;
+            this.offset = 0;
+        }
         this.text=text;
         this.container.innerHTML = '';
         this.loadMore();

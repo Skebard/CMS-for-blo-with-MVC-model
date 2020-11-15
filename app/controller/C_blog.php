@@ -21,8 +21,8 @@ class BlogController{
         }
         return $authorInfo;
     }
-    public static function getPostsByText(string $text){
-        return Blog::getPostsByText($text,'published');
+    public static function getPostsByText(string $text,int $limit=null,int $offset=null){
+        return Blog::getPostsByText($text,'published',$limit,$offset);
     }
 }
 

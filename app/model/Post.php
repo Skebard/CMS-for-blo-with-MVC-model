@@ -99,7 +99,7 @@ class Post{
 
     }
 
-    public static function getPostsByText(string $text,string $status){
+    public static function getPostsByText(string $text,string $status,int $limit=null,int $offset=null){
         $likeText = '%'.htmlentities($text).'%';
         $sql = 'SELECT * FROM (
             SELECT * FROM posts WHERE title LIKE "'. $likeText . '"
@@ -110,7 +110,13 @@ class Post{
                 WHERE content LIKE "'. $likeText . '"
                 GROUP BY postId
             )
-        ) AS foundPosts WHERE STATUS = ?';
+        ) AS foundPosts WHERE STATUS = ? ';
+        if($limit){
+            $sql .= 'LIMIT '.intval(htmlentities(strval($limit))).' ';
+        }
+        if($offset){
+            $sql .= 'OFFSET '.intval(htmlentities(strval($offset))).' ';
+        }
         $stmt = Db::execute($sql,[$status]);
         return $stmt->fetchAll();
     }

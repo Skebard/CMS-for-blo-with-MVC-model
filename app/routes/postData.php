@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD']!=='GET'){
 
         $posts;
         if($text){
-            $posts = BlogController::getPostsByText($text);
+            $posts = BlogController::getPostsByText($text,$limit,$offset);
         }else{
             $posts = BlogController::getPostsByCategory($limit,$offset,$category);
         }
