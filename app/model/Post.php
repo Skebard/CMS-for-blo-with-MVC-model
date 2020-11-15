@@ -110,6 +110,18 @@ class Post{
                 WHERE content LIKE "'. $likeText . '"
                 GROUP BY postId
             )
+            UNION
+            SELECT * FROM posts WHERE authorId IN (
+                SELECT id
+                FROM authors
+                WHERE firstName LIKE "'. $likeText . '"
+            )
+            UNION
+            SELECT * FROM posts WHERE authorId IN (
+                SELECT id
+                FROM authors
+                WHERE lastName1 LIKE "'. $likeText . '"
+            )
         ) AS foundPosts WHERE STATUS = ? ';
         if($limit){
             $sql .= 'LIMIT '.intval(htmlentities(strval($limit))).' ';

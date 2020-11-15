@@ -177,7 +177,7 @@ export default class Blog {
         this.loadMore();
     }
     async textSearch(text) {
-        if(!this.modeText){
+        if(!this.modeText || this.text!==text){
             this.modeText = true;
             this.offset = 0;
         }
