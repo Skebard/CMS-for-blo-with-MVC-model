@@ -99,7 +99,25 @@ class Post{
 
     }
 
+    public static function getPostsByText(string $text,string $status){
+        $likeText = '%'.htmlentities($text).'%';
+        $sql = 'SELECT * FROM (
+            SELECT * FROM posts WHERE title LIKE "'. $likeText . '"
+            UNION
+            SELECT * FROM posts WHERE id IN (
+                SELECT postId
+                FROM htmlelements
+                WHERE content LIKE "'. $likeText . '"
+                GROUP BY postId
+            )
+        ) AS foundPosts WHERE STATUS = ?';
+        $stmt = Db::execute($sql,[$status]);
+        return $stmt->fetchAll();
+    }
+
 }
+
+var_dump(Post::getPostsByText('a','published'));
 
 // $posts = Post::getPosts('published',5,9,null,null,null,8);
 // $allPosts = Post::getAllPosts();
