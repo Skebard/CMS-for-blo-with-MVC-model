@@ -161,6 +161,7 @@ export default class Blog {
         });
         return true;
     }
+    //Initialization
     init() {
         this.container.innerHTML = '';
         let data = window.location.href.split('category=');
@@ -168,7 +169,6 @@ export default class Blog {
 
         if (data.length > 1) {
             console.log(this.categories);
-            console.log()
             if (this.categories.indexOf(data[1]) !== -1) {
                 console.log(data[0]);
                 this.category = data[1];
@@ -176,6 +176,8 @@ export default class Blog {
         }
         this.loadMore();
     }
+
+    //Set the right flags and calls the methods loadMore to perform teh search
     async textSearch(text) {
         if(!this.modeText || this.text!==text){
             this.modeText = true;
@@ -184,14 +186,6 @@ export default class Blog {
         this.text=text;
         this.container.innerHTML = '';
         this.loadMore();
-        //! FINISH
-
-        //event listener btn
-        //send request with text
-        //get response
-        //print results
-        //PROBLEM: we can not use loadMore cause it calls the getPosts method
-        //SOLUTION: add flag that indicates if we are searching for text or not
 
     }
 

@@ -8,6 +8,8 @@ let loadingSpinner = document.getElementById('loading-spinner-id');
 let searchBtn = document.getElementById('search-btn-id');
 let searchInput = document.getElementById('search-input-id');
 
+
+//Initialize the page
 (async function(){
     let myBlog = new Blog(postsContainer,categoriesContainer,loadMoreBtn,loadingSpinner);
     let a = await myBlog.printCategories();
@@ -15,7 +17,6 @@ let searchInput = document.getElementById('search-input-id');
     loadMoreBtn.addEventListener('click', async  e=>{
         let resp = await myBlog.loadMore();
     });
-    //! add more event listener to trigger the search (enter, after stop writing, etc)
     searchBtn.addEventListener('click',e=>{
         console.log(searchInput.value);
         myBlog.textSearch(searchInput.value);
