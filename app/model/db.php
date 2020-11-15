@@ -133,8 +133,8 @@ class Db
     /**
      * Executes the given query scaping the set parameters
      * @access public
-     * @param string $query
-     * @param array $parameter
+     * @param string $query sql query with question mark placeholders (?)
+     * @param array $parameter (optional) the correspondent values of the ? placeholders. If not indicate it will be understood that there are not ? placeholders
      * @return PDOStatement
      */
     public static function execute(string $query, array $parameter = [])
@@ -158,9 +158,9 @@ class Db
 // $stmt->execute([]);
 
 
-if ($result = Db::execute('SELECT * FROM users')) {
+// if ($result = Db::execute('SELECT * FROM users')) {
 
-    echo var_dump($result->fetchAll());
-}
+//     echo var_dump($result->fetchAll());
+// }
 
 //$stmt = $conn->exec('CREATE TABLE usersa ( id INT AUTO_INCREMENT PRIMARY KEY)');

@@ -2,7 +2,7 @@
 class Config{
 
     const  DATABASE_HOST = 'localhost';
-    const  DATABASE_NAME = 'vlog2020';
+    const  DATABASE_NAME = 'my_blog01';
     const  DATABASE_USERNAME = 'root';
     const  DATABASE_PASSWORD ='';
     const  DATABASE_CHARSET = 'utf8mb4';
