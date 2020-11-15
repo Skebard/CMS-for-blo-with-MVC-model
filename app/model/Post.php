@@ -2,6 +2,8 @@
 declare(strict_types = 1);
 require_once 'db.php';
 class Post{
+    //white list to avoid sql injections
+    const AUTHOR_COLUMNS = ['id','username','password','firstName','lastName1','lastName2','birthdate','profileImage','email','*'];
 
     /**
      * Searches the posts given certain constraints and returns a query with question mark placeholders and the corresponded values
@@ -14,7 +16,7 @@ class Post{
      * @param string $categoryName (optional) as $categoryId but using the name of the category
      * @param string $excludedTitle (optional) post to skip in case it is found
      * @param string $excludedTitleId (optional) as $excludedTitle but indicating the id
-     * @return array  The first element contains the query with the question mark placeholders and the second element contains the array of values ordered as the ? placeholder
+     * @return array  Found posts
      */
     public static function getPosts(string $status=null,int $limit=null,int $offset=null, int $categoryId=null, string $categoryName=null,string $excludedTitle=null,int $excludedTitleId=null){
         $params =[];
@@ -68,17 +70,45 @@ class Post{
         return $stmt->fetchAll();
     }
 
+    public static function getAuthors(array $columns = null,string $authorUsername=null,int $authorId=null){
+        $params = [];
+        $sql = 'SELECT ';
+        if($columns){
+            foreach($columns as $column){
+                if(in_array($column,Post::AUTHOR_COLUMNS)){
+                    $sql .= $column;
+                    if($column!==end($columns)){
+                        $sql .=',';
+                    }
+                }
+            }
+        }else{
+            $sql .= '* ';
+        }
+        $sql .=' FROM authors ';
+        if($authorUsername){
+            $sql .= ' WHERE username =? ';
+            array_push($params,$authorUsername);
+        }else if($authorId){
+            $sql .= ' WHERE id =? ';
+            array_push($params,$authorId);
+        }
+        //var_dump($params);
+        $stmt = Db::execute($sql,$params);
+        return $stmt->fetch();
+
+    }
+
 }
 
+// $posts = Post::getPosts('published',5,9,null,null,null,8);
+// $allPosts = Post::getAllPosts();
+// print_r($posts);
 
-$posts = Post::getPosts('published',5,9,null,null,null,8);
-$allPosts = Post::getAllPosts();
-print_r($posts);
-
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo $_SERVER['REMOTE_ADDR'];
+// echo "<br>";
+// echo "<br>";
+// echo "<br>";
+// echo "<br>";
+// echo $_SERVER['REMOTE_ADDR'];
 //print_r($allPosts);
 

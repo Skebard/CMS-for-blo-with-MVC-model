@@ -7,6 +7,7 @@
 //todo CONSTANTS
 const POSTS_PER_PAGE = 5;
 const POSTS_URL = 'http://localhost/projects/MyBlog/blog/posts/newData.php';
+const NEW_POSTS_URL = 'app/routes/postData.php';
 
 
 export default class Blog {
@@ -134,6 +135,9 @@ export default class Blog {
         let categories = await this.getCategories();
         this.categories = categories;
         this.categoriesContainer.innerHTML = "";
+        if(this.categories.indexOf('All')==-1){
+            this.categories.push('All');
+        }
         categories.forEach(category => {
             let newCategory = document.createElement('li');
             newCategory.textContent = category;
@@ -168,13 +172,13 @@ export default class Blog {
 
 
     getPosts(offset, category = "All") {
-        let url = POSTS_URL + "?offset=" + offset + "&limit=" + POSTS_PER_PAGE + "&category=" + category;
+        let url = NEW_POSTS_URL + "?offset=" + offset + "&limit=" + POSTS_PER_PAGE + "&category=" + category;
         return fetch(url)
             .then(resp => resp.json());
     }
 
     getCategories() {
-        let url = POSTS_URL + "?categories";
+        let url = NEW_POSTS_URL + "?categories";
         return fetch(url)
             .then(resp => resp.json());
     }

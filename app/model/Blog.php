@@ -1,6 +1,6 @@
 <?php
-require_once 'db.php';
-class Blog{
+require_once 'Post.php';
+class Blog extends Post{
     public static function getPublishedCategories(){
         $sql = 'SELECT * FROM categories
                     WHERE id IN (
