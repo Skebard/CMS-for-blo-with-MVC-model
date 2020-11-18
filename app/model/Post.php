@@ -193,11 +193,18 @@ class Post{
         }
     }
     public static function postExists(int $id = null, string $title = null){
-        
+    }
+    public static function getPostContents(int $id){
+        $sql = 'SELECT * FROM htmlElements 
+                WHERE postId = ?';
+        $contents =  Db::execute($sql,[$id]);
+        return $contents->fetchAll();
     }
 
 }
 
+
+//var_dump(Post::getPostContents(1));
 //var_dump(Post::getPostCategories(1));
 //var_dump(Post::getPost(3,null,null));
 

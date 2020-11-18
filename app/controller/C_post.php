@@ -21,6 +21,8 @@ class PostController {
         $categories = array_map(fn($cat)=>$cat['name'],Post::getPostCategories($this->postInfo['id']));
         $mainCategoryName = Post::getCategoryName($this->postInfo['mainCategory']);
         PostView::printCategories($mainCategoryName,$categories);
+        $contents = Post::getPostContents($this->postInfo['id']);
+        PostView::printContents($contents);
         PostView::closeMain();
 
         // PostView::printCategories()

@@ -73,6 +73,7 @@ class PostView {
     }
     public static function printContents($contents)
     {
+
         foreach($contents as $content){
             //$content['content'] = $this->removeDivs($content['content']);
             switch ($content['type']) {
