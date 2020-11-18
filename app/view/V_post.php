@@ -157,6 +157,14 @@ class PostView {
                 </div>';
         echo $html;
     }
+    public static function scripts(){
+        echo "<script defer>window.addEventListener('load',e=>{
+            let code = document.querySelectorAll('pre');
+            code.forEach(c=>{
+                hljs.highlightBlock(c);
+            })
+        });</script>";
+    }
     public static function closeMain()
     {
         echo '</div>';

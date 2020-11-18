@@ -23,6 +23,7 @@ class PostController {
         PostView::printCategories($mainCategoryName,$categories);
         $contents = Post::getPostContents($this->postInfo['id']);
         PostView::printContents($contents);
+        PostView::scripts();
         PostView::closeMain();
 
         // PostView::printCategories()
