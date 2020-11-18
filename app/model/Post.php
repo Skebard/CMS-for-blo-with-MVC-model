@@ -82,7 +82,7 @@ class Post{
         return $stmt->fetchAll();
     }
 
-    public static function getAuthors(array $columns = null,string $authorUsername=null,int $authorId=null){
+    public static function getAuthor(array $columns = null,string $authorUsername=null,int $authorId=null){
         $params = [];
         $sql = 'SELECT ';
         if($columns){
@@ -181,7 +181,17 @@ class Post{
                                     WHERE id=?))';
         return Db::execute($sql,[$id,$id])->fetchAll();
     }
+    public static function getCategoryName(int $id){
+        $sql = 'SELECT name FROM categories
+                WHERE id =?';
 
+        $name = Db::execute($sql,[$id])->fetch();
+        if($name){
+            return $name['name'];
+        }else{
+            return false;
+        }
+    }
     public static function postExists(int $id = null, string $title = null){
         
     }

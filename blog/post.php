@@ -6,8 +6,9 @@ if($_SERVER['REQUEST_METHOD']!=='GET' || !isset($_GET['id'])){
     exit;
 }else{
     try{
-        $controller = new PostController($_GET['id']);
+        $controller = new PostController(str_replace('-',' ',$_GET['id']));
     }catch(Exception $e){
+        echo str_replace('/',' ',$_GET['id']);
         echo 'id does not exist';
         exit;
     }

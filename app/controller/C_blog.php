@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__.'../model/Blog.php';
-require_once __DIR__.'../utils.php';
+require_once __DIR__.'/../model/Blog.php';
+require_once __DIR__.'/../utils.php';
 class BlogController{
     public static function getCategoriesNames(){
         $categories = Blog::getPublishedCategories();
@@ -15,7 +15,7 @@ class BlogController{
     }
 
     public static function getAuthorById($authorId){
-        $authorInfo = Blog::getAuthors(['profileImage','firstName','lastName1'],null,$authorId);
+        $authorInfo = Blog::getAuthor(['profileImage','firstName','lastName1'],null,$authorId);
         if(!externalResourceExists($authorInfo['profileImage'])){
             $authorInfo['profileImage'] = "https://i.imgur.com/wIHZKq1.png";
         }

@@ -16,6 +16,11 @@ class PostController {
     public function generatePost(){
 
         PostView::printTitle($this->postInfo['title'],$this->postInfo['mainImage']);
+        $author = Post::getAuthor(['firstName','lastName1','profileImage'],null,$this->postInfo['authorId']);
+        PostView::printAuthor($author['firstName'],$author['lastName1'],$author['profileImage'],$this->postInfo['publishingDate']);
+        $categories = array_map(fn($cat)=>$cat['name'],Post::getPostCategories($this->postInfo['id']));
+        $mainCategoryName = Post::getCategoryName($this->postInfo['mainCategory']);
+        PostView::printCategories($mainCategoryName,$categories);
         PostView::closeMain();
 
         // PostView::printCategories()
