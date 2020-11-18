@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD']!=='GET'){
             $postInfo->publishingDate = $post['publishingDate'];
             $postInfo->body = $post['description'];
             $postIdentifier = str_replace(' ','-',$post['title']);
-            $postInfo->url = 'posts/post.php?id='.$postIdentifier;
+            $postInfo->url = 'blog/post.php?id='.$postIdentifier;
             $postInfo->authorInfo = BlogController::getAuthorById($post['authorId']);
             array_push($response->results,$postInfo);
         }

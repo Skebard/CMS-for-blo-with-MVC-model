@@ -1,6 +1,6 @@
 <?php
-require_once '../model/Blog.php';
-require_once '../utils.php';
+require_once __DIR__.'../model/Blog.php';
+require_once __DIR__.'../utils.php';
 class BlogController{
     public static function getCategoriesNames(){
         $categories = Blog::getPublishedCategories();

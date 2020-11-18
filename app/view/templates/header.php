@@ -6,6 +6,10 @@
     $current_dir = basename(getcwd());
     
     session_start();
+
+    require __DIR__.'/../../utils.php';
+    
+
 ?>
 <!DOCTYPE html>
 <html lang=en>
@@ -14,10 +18,10 @@
     <title>Antonio Jorda <?php echo $current_dir === 'blog'? 'Blog': ($current_dir ==='about'? 'About': ($current_dir ==='contact'?'Contact': '')); ?></title>
 
     
-    <link rel="stylesheet" href="client/css/main.css">
-    <link rel="stylesheet" href="client/css/loading.css">
+    <link rel="stylesheet" href="<?php echo getResourceUrl(__DIR__,'../../../client/css/main.css'); ?>">
+    <link rel="stylesheet" href="<?php echo getResourceUrl(__DIR__,'../../../client/css/loading.css'); ?>">
     
-    <script defer src='client/controller/header.js'></script>
+    <script defer src='<?php echo getResourceUrl(__DIR__,'../../../client/controller/header.js'); ?>'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- google Fonts roboto-->
@@ -35,8 +39,8 @@
         echo '<script defer type="module" src="client/controller/blog/main.js"></script>';
         //echo '<script defer src="../public/js/subscribe/subscribe.js"></script>';
 
-    }else if($current_dir === 'about'){
-
+    }else if($current_file_name === 'post.php'){
+        echo '<link rel="stylesheet" href="../client/css/post.css">';
     }else if($current_dir === 'contact'){
 
     }else{
@@ -54,13 +58,13 @@
                 <i id="btn-close-modal-menu" class="fas fa-times"></i>
                 <ul id="nav-menu-id" class='select-section'>
                     <li  <?php echo $current_file_name==='blog.php'?'class="active"':''; ?>>
-                        <a href= <?php echo $current_file_name==='blog.php'?'#':'../blog';?>>Blog</a>
+                        <a href= <?php echo $current_file_name==='blog.php'?'#':'../blog.php';?>>Blog</a>
                     </li>
                     <li  <?php echo $current_file_name==='about.php'?'class="active"':''; ?>>
-                    <a href= <?php echo $current_file_name==='about.php'?'#':'../about';?>>About</a>
+                    <a href= <?php echo $current_file_name==='about.php'?'#':'../about.php';?>>About</a>
                     </li>
                     <li <?php echo $current_file_name==='contact.php'?'class="active"':''; ?>>
-                    <a href= <?php echo $current_file_name==='contact.php'?'#':'../contact';?>>Contact</a>
+                    <a href= <?php echo $current_file_name==='contact.php'?'#':'../contact.php';?>>Contact</a>
                     </li>
                 </ul>
             </div>

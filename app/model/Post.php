@@ -1,9 +1,21 @@
 <?php
 declare(strict_types = 1);
-require_once 'db.php';
+require_once __DIR__.'/db.php';
 class Post{
     //white list to avoid sql injections
     const AUTHOR_COLUMNS = ['id','username','password','firstName','lastName1','lastName2','birthdate','profileImage','email','*'];
+    protected $title;
+    protected $conn;
+    public $postInfo;
+    protected $categories = [];
+    protected $author;
+    protected $contents;
+    function __construct($title)
+    {
+    }
+
+
+
 
     /**
      * Searches the posts given certain constraints and returns a query with question mark placeholders and the corresponded values
@@ -132,7 +144,52 @@ class Post{
         $stmt = Db::execute($sql,[$status]);
         return $stmt->fetchAll();
     }
+
+    public static function getPost(int $id=null ,string $title=null,string $status=null){
+        $sql = 'SELECT * FROM posts WHERE ';
+        $params = [];
+        if($id){
+            $sql .= 'id = ? ';
+            $params[]=$id;
+        }else if($title){
+            $sql .= 'title = ? ';
+            $params[]=$title;
+        }else{
+            return false;
+        }
+
+        if($status){
+            $sql .= 'AND STATUS=? ';
+            $params[]=$status;
+        }else{
+            $sql .= 'AND STATUS= "published" ';
+        }
+        $stmt = Db::execute($sql,$params);
+        return $stmt->fetch();
+    }
+
+    /**
+     * Returns an array containing assoc array that contain the id and the name of the post categories, excluding the main category
+     * @param int $id post id
+     * @return array
+     */
+    public static function getPostCategories(int $id){
+        $sql='SELECT * FROM categories
+                WHERE id IN ( SELECT categoryId FROM postcategories
+                                WHERE postId=? AND categoryId NOT IN(
+                                    SELECT mainCategory FROM posts
+                                    WHERE id=?))';
+        return Db::execute($sql,[$id,$id])->fetchAll();
+    }
+
+    public static function postExists(int $id = null, string $title = null){
+        
+    }
+
 }
+
+//var_dump(Post::getPostCategories(1));
+//var_dump(Post::getPost(3,null,null));
 
 //var_dump(Post::getPostsByText('a','published'));
 

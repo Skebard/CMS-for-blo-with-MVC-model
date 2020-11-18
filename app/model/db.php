@@ -1,5 +1,5 @@
 <?php
-require '../config.php';
+require __DIR__.'/../config.php';
 
 /**
  * This class provides a connection with a database and methods to execute queries.
