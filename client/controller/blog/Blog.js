@@ -179,6 +179,9 @@ export default class Blog {
 
     //Set the right flags and calls the methods loadMore to perform teh search
     async textSearch(text) {
+        if(this.text===text){
+            return false;
+        }
         if(!this.modeText || this.text!==text){
             this.modeText = true;
             this.offset = 0;
