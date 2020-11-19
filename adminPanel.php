@@ -4,6 +4,7 @@
 
 <head>
     <title>Admin panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href="client/css/adminPanel/main.css">
     <link rel='stylesheet' href="client/css/adminPanel/adminPanel.css">
     <script defer  type="module" src="client/controller/adminPanel.js"></script>
@@ -15,9 +16,9 @@
     <header>
         <div class='left-header'>
         <i class="fas fa-bars"></i>
-        <i class='logo'>
+        <a href='adminPanel.php'><i class='logo'>
             Admin Panel
-        </i>
+        </i></a>
         </div>
         <div class='right-header'>
         <i class="fas fa-cog"></i>
@@ -46,7 +47,7 @@
                 <div class="wrapper">
                     <?php
                     require_once __DIR__.'/app/controller/C_adminPanel.php';
-                    $admPanCon = new AdminPanelController(3);
+                    $admPanCon = new AdminPanelController(1);
                     $admPanCon->generateTables();
 
                     ?>

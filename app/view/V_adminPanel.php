@@ -40,7 +40,7 @@ class AdminPanelView{
     }
     public function printDeletedTable()
     {
-        $html = '<div class="table draft ">';
+        $html = '<div class="table deleted ">';
         $header =['Title','Deletion date','Creation date'];
         $html .= $this->createTableHeader('',$header);
         foreach($this->deletedPosts as $post){
