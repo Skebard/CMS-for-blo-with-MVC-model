@@ -21,7 +21,7 @@ class AdminPanelView{
                 continue;
             }
             $params = [$post['title'],$post['publishingDate'],$post['creationDate']];
-            $html .= $this->createRow($params);
+            $html .= $this->createRow($params,$post['id']);
         }
         $html .='</div>';
         echo $html;
@@ -33,7 +33,7 @@ class AdminPanelView{
         $html .= $this->createTableHeader('blue',$header);
         foreach($this->draftPosts as $post){
             $params = [$post['title'],$post['lastModificationDate'],$post['creationDate']];
-            $html .= $this->createRow($params);
+            $html .= $this->createRow($params,$post['id']);
         }
         $html .='</div>';
         echo $html;
@@ -45,14 +45,14 @@ class AdminPanelView{
         $html .= $this->createTableHeader('',$header);
         foreach($this->deletedPosts as $post){
             $params = [$post['title'],$post['lastModificationDate'],$post['creationDate']];
-            $html .= $this->createRow($params);
+            $html .= $this->createRow($params,$post['id']);
         }
         $html .='</div>';
         echo $html;
     }
-    private function createRow($params)
+    private function createRow($params,$id)
     {
-        $html = '<div class="row post">';
+        $html = '<div data-id="'.$id.'" class="row post">';
         foreach ($params as $param) {
             $html .= '<div class="cell">'
                 . htmlentities($param) . '</div>';

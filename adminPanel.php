@@ -6,7 +6,7 @@
     <title>Admin panel</title>
     <link rel='stylesheet' href="client/css/adminPanel/main.css">
     <link rel='stylesheet' href="client/css/adminPanel/adminPanel.css">
-    <script defer  type="module" src="../Public/js/adminPanel/app.js"></script>
+    <script defer  type="module" src="client/controller/adminPanel.js"></script>
     <!--Font awesome-->
     <script src="https://kit.fontawesome.com/9547750bbd.js" crossorigin="anonymous"></script>
 </head>
