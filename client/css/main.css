@@ -284,14 +284,17 @@ header:after {
     justify-content: space-around;
 }
 
-.categories-tags>li {
+.categories-tags> li{
+    display:flex;
+}
+.categories-tags a {
     cursor: pointer;
     background-color: rgb(255, 191, 104);
     margin: 0.5rem;
     padding: 0.6rem;
 }
 
-.categories-tags>li:hover {
+.categories-tags a:hover {
     background-color: rgb(255, 149, 104);
 }
 /*** end category tags ***/

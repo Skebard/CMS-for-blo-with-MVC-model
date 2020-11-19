@@ -33,9 +33,9 @@ class PostView {
     public static function printCategories($mainCategory,$categories)
     {
         $html =  '<ul class="categories-tags">
-        <li class="main-category-tag">' . $mainCategory . '</li>';
+        <li class="main-category-tag"><a href="../blog.php?category='.$mainCategory.'">' . $mainCategory . '</a></li>';
         foreach ($categories as $category) {
-            $html .= '<li>' . $category . '</li>';
+            $html .= '<li><a href="../blog.php?category='.$category.'">' . $category . '</a></li>';
         }
         $html .= '</ul>
         </div>';

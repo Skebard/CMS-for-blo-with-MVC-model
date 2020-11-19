@@ -159,6 +159,7 @@ export default class Blog {
             });
             this.categoriesContainer.appendChild(newCategory);
         });
+
         return true;
     }
     //Initialization
