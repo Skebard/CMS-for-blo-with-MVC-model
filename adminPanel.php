@@ -11,11 +11,23 @@
     <script src="https://kit.fontawesome.com/9547750bbd.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class='light'>
     <header>
+        <div class='left-header'>
+        <i class="fas fa-bars"></i>
+        <i class='logo'>
+            Admin Panel
+        </i>
+        </div>
+        <div class='right-header'>
+        <i class="fas fa-cog"></i>
+            <div class='profile-icon'>
+                <img src='https://i.imgur.com/wIHZKq1.png'>
+            </div>
+        </div>
 
     </header>
-    <main class="max-width">
+    <main class="">
         <div class="panel-container">
             <aside class='sidebar'>
                 <ul class='options'>
@@ -33,7 +45,9 @@
                 </ul>
                 <div class="wrapper">
                     <?php
-
+                    require_once __DIR__.'/app/controller/C_adminPanel.php';
+                    $admPanCon = new AdminPanelController(3);
+                    $admPanCon->generateTables();
 
                     ?>
 

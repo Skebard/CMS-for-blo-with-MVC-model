@@ -222,6 +222,18 @@ class Post{
         return $relatedPosts;
     }
 
+    public static function getPostsByAuthor(int $authorId,string $status=null){
+        $params = [$authorId];
+        $sql = 'SELECT * FROM posts
+                    WHERE authorId=? ';
+        if($status){
+            $sql .= 'AND STATUS=?';
+            array_push($params,$status);
+        }
+        $stmt = Db::execute($sql,$params);
+        return $stmt->fetchAll();
+    }
+
 }
 
 

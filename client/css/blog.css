@@ -24,6 +24,15 @@
 
 /*** end search post ***/
 
+/*** CATEGORIES ***/
+.categories-tags> li{
+    display:flex;
+    cursor: pointer;
+    background-color: rgb(255, 191, 104);
+    margin: 0.5rem;
+    padding: 0.6rem;
+}
+/*** end categories ***/
 
 
 /*** POSTS ***/
