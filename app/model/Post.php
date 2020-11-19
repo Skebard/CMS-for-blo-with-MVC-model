@@ -201,6 +201,27 @@ class Post{
         return $contents->fetchAll();
     }
 
+    public static function getRelatedPosts(int $id,int $mainCategoryId, int $numRelatedPosts){
+        $relatedPosts = Post::getPosts('published',$numRelatedPosts,0,$mainCategoryId,null,null,$id);
+        if(count($relatedPosts) < $numRelatedPosts){
+            $numPosts = $numRelatedPosts-count($relatedPosts);
+            $morePosts = Post::getPosts('published',$numRelatedPosts); // we take more results than needed for the case that we will get the ones that already got before
+            $newPosts = array_values(array_filter($morePosts,function($post)use($relatedPosts){
+                foreach($relatedPosts as $relPost){
+                    if($relPost['id']===$post['id']){
+                        return false;
+                    }
+                }
+                return true;
+            }));
+            while($numPosts>0){
+                $numPosts--;
+                array_push($relatedPosts,$newPosts[$numPosts]);
+            }
+        }
+        return $relatedPosts;
+    }
+
 }
 
 

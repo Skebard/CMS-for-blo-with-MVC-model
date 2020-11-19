@@ -96,20 +96,17 @@ class PostView {
         $text = str_replace('<div>','<br>',$text);
         return $text;
     }
-    public function printRelated(){
-        //get 3 posts related with the main topic or secondary amd if not any topic
-        $related = Post::getPostsByCategory($this->mainCategory,PostGenerator::NUM_RELATED_POSTS,0,$this->title);
-        $numFound = count($related);
-        if($numFound<PostGenerator::NUM_RELATED_POSTS){
-            $moreRelated = POST::getPosts(PostGenerator::NUM_RELATED_POSTS-$numFound,0,$this->title);
-        $related = array_merge($related,$moreRelated);
-        }
-        $html = '        <div class="max-width center ">
+    /**
+     * @param array $relatedPosts it must include authorInfo=>stdClass with all the info
+     */
+    public static function printRelated($relatedPosts){
+
+        $html = ' <div class="max-width center ">
         <h2 class="related-title"> Related</h2>
         <ul class="related-posts-wrapper">';
 
-        foreach($related as $post){
-            $authorInfo = Post::getAuthorInfo($post['authorId']);
+        foreach($relatedPosts as $post){
+            $authorInfo = $post['authorInfo'];
             //in case it does not exist we do not want to show a warning that is why we put a @
             $file = $authorInfo['profileImage'];
             $file_headers = @get_headers($file);
