@@ -112,7 +112,7 @@ class PostView {
             $file_headers = @get_headers($file);
             if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
                 $exists = false;
-                $authorInfo['profileImage'] = "https://i.imgur.com/wIHZKq1.png";
+                //$authorInfo['profileImage'] = "https://i.imgur.com/wIHZKq1.png";
             }
             else {
                 $exists = true;
@@ -122,13 +122,13 @@ class PostView {
             $file_headers = @get_headers($file);
             if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
                 $exists = false;
-                $post['mainImage'] = "https://i.imgur.com/YcjzYu0.jpg";
+                //$post['mainImage'] = "https://i.imgur.com/YcjzYu0.jpg";
             }
             else {
                 $exists = true;
             }
 
-            $mainCategory = Post::getCategoryName($post['mainCategory']);
+            $mainCategory = $post['mainCategoryName'];
             $url = "?id=". str_replace(' ','-',$post['title']);
             $html .='  <li>
             <a href = "'.$url.'"><img src="'.$post['mainImage'].'"></a>

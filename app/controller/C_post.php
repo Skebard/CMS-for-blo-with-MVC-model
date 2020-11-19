@@ -1,8 +1,11 @@
 <?php
-require_once __DIR__.'/../model/post.php';
+require_once __DIR__.'/../model/Post.php';
 require_once __DIR__.'/../view/V_post.php';
+require_once __DIR__.'/../utils.php';
 class PostController {
     const NUM_RELATED_POSTS = 3;
+    const DEFAULT_POST_IMAGE = "https://i.imgur.com/YcjzYu0.jpg";
+    const DEFAULT_AUTHOR_PROFILE_IMAGE = "https://i.imgur.com/wIHZKq1.png";
     public $title;
 
     public function __construct($title){
@@ -29,8 +32,8 @@ class PostController {
         foreach($relatedPosts as &$relPost){
             $relPost['authorInfo']=Post::getAuthor(['firstName','lastName1','profileImage'],null,$relPost['authorId']);
             $relPost['mainCategoryName'] = Post::getCategoryName($relPost['mainCategory']);
-            // echo "<h1>new REL</h1>";
-            // var_dump($relPost);
+            $relPost['mainImage'] = externalResourceExists($relPost['mainImage'])?$relPost['mainImage']:PostController::DEFAULT_POST_IMAGE;
+            $relPost['authorInfo']['profileImage'] = externalResourceExists($relPost['authorInfo']['profileImage'])?$relPost['authorInfo']['profileImage']:PostController::DEFAULT_AUTHOR_PROFILE_IMAGE;
         }
         PostView::printRelated($relatedPosts);
         PostView::scripts();
