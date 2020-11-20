@@ -1,5 +1,5 @@
 /*** HEADER ***/
-header{
+body header{
     display:flex;
     justify-content:space-between;
     padding:1rem;
@@ -87,11 +87,17 @@ header{
 }
 
 .sidebar li {
-    padding: 1rem 0;
+    margin: 1rem 0;
     font-size: 1.4rem;
+    cursor:pointer;
+}
+.sidebar li:hover{
+    color: white;
 }
 .sidebar .options .active{
+    cursor:default;
     color:white;
+    border-bottom: 2px solid rgb(230, 182, 93);
 }
 
 .create-post-btn{
@@ -160,6 +166,9 @@ header{
 .light  .sidebar .options .active{
     color:#2b2b2b;
     font-weight:bold;
+}
+.light .sidebar li:hover{
+    color: black;
 }
 
 

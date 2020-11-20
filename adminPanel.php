@@ -21,7 +21,7 @@
         </i></a>
         </div>
         <div class='right-header'>
-        <i class="fas fa-cog"></i>
+        <a href='adminSettings.php'> <i class="fas fa-cog"></i></a>
             <div class='profile-icon'>
                 <img src='https://i.imgur.com/wIHZKq1.png'>
             </div>

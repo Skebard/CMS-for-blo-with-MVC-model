@@ -52,6 +52,26 @@ body{
   border-radius: 50%;
   box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .15);
   overflow: hidden;
+  position:relative;
+}
+
+.author-card .author-card-profile .author-card-avatar:hover .upload {
+    opacity:0.6;
+}
+.author-card .author-card-profile .author-card-avatar .upload {
+    cursor:pointer;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 900;
 }
 .author-card .author-card-profile .author-card-avatar > img {
   display: block;
