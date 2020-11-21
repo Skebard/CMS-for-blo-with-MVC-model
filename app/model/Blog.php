@@ -10,4 +10,15 @@ class Blog extends Post{
         $stmt = Db::execute($sql);
         return $stmt->fetchAll();
     }
+    public static function getCategories(string $status=null){
+        $sql = 'SELECT * FROM categories ';
+        $params =[];
+        if($status){
+            $sql .= 'WHERE STATUS=?';
+            array_push($params,$status);
+        }
+        $stmt = Db::execute($sql,$params);
+        return $stmt->fetchAll();
+
+    }
 }

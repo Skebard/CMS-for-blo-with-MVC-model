@@ -161,8 +161,6 @@ class Post{
         if($status){
             $sql .= 'AND STATUS=? ';
             $params[]=$status;
-        }else{
-            $sql .= 'AND STATUS= "published" ';
         }
         $stmt = Db::execute($sql,$params);
         return $stmt->fetch();

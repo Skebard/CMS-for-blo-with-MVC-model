@@ -1,53 +1,16 @@
 <?php
 
 $page = $_GET['page'] ?? null;
+require __DIR__.'/app/view/templates/adminHeader.php';
 
 ?>
 
-<!DOCTYPE html>
-<html lang='en'>
-
-<head>
-    <title>Admin panel</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href="client/css/adminPanel/main.css">
-    <link rel='stylesheet' href="client/css/adminPanel/adminPanel.css">
-    <script defer type="module" src="client/controller/adminPanel.js"></script>
-    <!--Font awesome-->
-    <script src="https://kit.fontawesome.com/9547750bbd.js" crossorigin="anonymous"></script>
-
-
-
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<main class="">
+<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="client/css/adminSettings.css">
+    <link rel="stylesheet" href="client/css/adminSettings.css"> -->
 
-</head>
-
-<body class='light'>
-    <header>
-        <div class='left-header'>
-            <i class="fas fa-bars"></i>
-            <a href='adminPanel.php'><i class='logo'>
-                    Admin Panel
-                </i></a>
-        </div>
-        <div class='right-header'>
-            <i class="fas fa-cog"></i>
-            <div class='profile-icon'>
-                <img src='https://i.imgur.com/wIHZKq1.png'>
-            </div>
-        </div>
-
-    </header>
-
-
-
-
-
-    <main>
         <div class="container mt-5">
             <div class="col">
                 <div class="row w-100 mr-0 ml-0 pb-5">
@@ -118,6 +81,7 @@ $page = $_GET['page'] ?? null;
                 </div>
             </div>
         </div>
+
     </main>
 </body>
 

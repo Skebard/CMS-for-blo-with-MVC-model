@@ -10,7 +10,7 @@ class PostController {
 
     public function __construct($title){
         $this->title = $title;
-        $this->postInfo = Post::getPost(null,$title,null);
+        $this->postInfo = Post::getPost(null,$title,'published');
         if(!$this->postInfo){
             throw new Exception ('Post does not exist');
         }

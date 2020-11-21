@@ -34,6 +34,16 @@ header{
 
 }
 
+/*** PAGE LOADER ***/
+.page-loader{
+    position:fixed;
+    height:100%;
+    width:100%;
+    left:0;
+    bottom:0;
+    background-color:black;
+    z-index:9999;
+}
 
 /** FOOTER **/
 
@@ -65,6 +75,9 @@ input{
     border:none;
 }
 a{
+    text-decoration:none;
+}
+body a:hover{
     text-decoration:none;
 }
 

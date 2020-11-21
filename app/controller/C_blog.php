@@ -6,6 +6,9 @@ class BlogController{
         $categories = Blog::getPublishedCategories();
         return array_map(fn ($category)=>$category['name'],$categories);
     }
+    public static function getAllCategories(){
+        return Blog::getCategories();
+    }
 
     public static function getPostsByCategory( int $limit=null,int  $offset=null,string  $category=null){
         if($category ==='All'){
