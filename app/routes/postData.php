@@ -22,11 +22,28 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
 //Update post
 }else if($_SERVER['REQUEST_METHOD']==='PUT'){
-    echo file_get_contents("php://input");
-    exit();
+    //get data
+    $data = file_get_contents("php://input");
+    $data = json_decode($data);
+
+    if(!isset($data->action)){
+        exit;
+    }else if($data->action === 'publish'){
+        BlogController::publishPost($data->id);
+        echo 'PUBLISH';
+
+    }else if($data->action ==='withdraw'){
+        BlogController::withdrawPost($data->id);
+        echo 'WITHDRAW';
+    }else if($data->action === 'save'){
+    }else{
+    }
+    exit;
     // we get the author from the session
 
+//set the 'STATUS' field to 'delete'
 }else if($_SERVER['REQUEST_METHOD']==='DELETE'){
+
 
 }
 else if($_SERVER['REQUEST_METHOD']==='GET'){
@@ -44,7 +61,8 @@ else if($_SERVER['REQUEST_METHOD']==='GET'){
         echo json_encode($categories);
     }
     else if(isset($_GET['id'])){
-        $_GET['id']=25;
+        //$_GET['id']=;
+        //!check if post exists
         $post = Post::getPost($_GET['id']);
         $authorInfo = Post::getAuthor(['profileImage','username','email','id'],null,$post['authorId']);
         $mainCategory = Post::getCategoryName($post['mainCategory']);

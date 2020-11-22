@@ -4,6 +4,8 @@ require_once __DIR__.'/db.php';
 class Post{
     //white list to avoid sql injections
     const AUTHOR_COLUMNS = ['id','username','password','firstName','lastName1','lastName2','birthdate','profileImage','email','*'];
+    //notice that we do not delete the post ('for the moment') we only assign them the STATUS deleted
+    const STATUS = ['published','draft','deleted'];
     protected $title;
     protected $conn;
     public $postInfo;
@@ -232,9 +234,23 @@ class Post{
         return $stmt->fetchAll();
     }
 
+    public static function updateStatus(int $id, string $status){
+        if(!in_array($status,self::STATUS)){
+            throw new Exception('Status: '.$status.' doest not exist');
+        }else{
+            $sql = 'UPDATE posts 
+            SET STATUS   = ?
+            WHERE id =?';
+            Db::execute($sql,[$status,$id]);
+            return true;
+        }
+    }
+    public static function updatePost(int $id,array $categories,string $description, $mainCategory,$mainImage,$title ){
+
+    }
 }
 
-
+//Post::updateStatus(1,'draft');
 //var_dump(Post::getPostContents(1));
 //var_dump(Post::getPostCategories(1));
 //var_dump(Post::getPost(3,null,null));

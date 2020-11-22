@@ -27,6 +27,15 @@ class BlogController{
     public static function getPostsByText(string $text,int $limit=null,int $offset=null){
         return Blog::getPostsByText($text,'published',$limit,$offset);
     }
+    public static function publishPost($id){
+        return Post::updateStatus($id,'published');
+    }
+    public static function withdrawPost($id){
+        return Post::updateStatus($id,'draft');
+    }
+    public static function deletePost($id){
+        return Post::updateStatus($id,'deleted');
+    }
 }
 
 //var_dump(BlogController::getCategoriesNames());

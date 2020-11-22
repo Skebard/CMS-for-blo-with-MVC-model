@@ -11,7 +11,7 @@ export default class ActionsHandler{
             mainImage: mainImage,
             mainCategory: JSON.stringify(mainCategory),
             categories: JSON.stringify(categories),
-            contents: JSON.stringify(contents)
+            contents: contents
         }
         console.log(data);
         this.action('save',data);
@@ -32,31 +32,27 @@ export default class ActionsHandler{
         this.action('withdraw',data);
     }
 
-    create(title){
-        let data = {
-            title:title
-        }
-        this.action('create',data);
-    }
+
     async action(action,data){
-        let formData = new FormData;
-        Object.entries(data).forEach(entry=>{
-            formData.append(entry[0],entry[1]);
-        });
-        formData.append('action',action)
-        let dataObject ={};
-        formData.forEach((value,key)=>{dataObject[key]=value});
+        // let formData = new FormData;
+        // Object.entries(data).forEach(entry=>{
+        //     formData.append(entry[0],entry[1]);
+        // });
+        // formData.append('action',action)
+        // let dataObject ={};
+        // formData.forEach((value,key)=>{dataObject[key]=value});
+        data.action = action;
 
         let dataServ = await fetch('app/routes/postData.php',{
             method: 'put',
-            body: JSON.stringify(dataObject)
+            body: JSON.stringify(data)
         }).then(resp=>resp.text());
         console.log(dataServ);
+        console.log(JSON.parse(dataServ));
 
     }
 
     async getCategories(){
-        let old = "../blog/posts/newData.php?categories";
         let neww = "app/routes/postData.php?allCategories=true";
         let resp = await fetch(neww);
         let data = await  resp.json();

@@ -7,6 +7,7 @@ class PostController {
     const DEFAULT_POST_IMAGE = "https://i.imgur.com/YcjzYu0.jpg";
     const DEFAULT_AUTHOR_PROFILE_IMAGE = "https://i.imgur.com/wIHZKq1.png";
     public $title;
+    public $id;
 
     public function __construct($title){
         $this->title = $title;
@@ -14,6 +15,7 @@ class PostController {
         if(!$this->postInfo){
             throw new Exception ('Post does not exist');
         }
+        $this->id = $this->postInfo['id'];
     }
 
     //use view methods to print the view
@@ -42,6 +44,8 @@ class PostController {
         // PostView::printCategories()
 
     }
+
+
 }
 
 
