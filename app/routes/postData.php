@@ -43,7 +43,7 @@ else if($_SERVER['REQUEST_METHOD']==='GET'){
         $categories = BlogController::getAllCategories();
         echo json_encode($categories);
     }
-    else if(isset($_GET['title'])){
+    else if(isset($_GET['id'])){
         $_GET['id']=25;
         $post = Post::getPost($_GET['id']);
         $authorInfo = Post::getAuthor(['profileImage','username','email','id'],null,$post['authorId']);

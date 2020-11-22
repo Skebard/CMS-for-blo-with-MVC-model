@@ -9,7 +9,7 @@ export default class ActionsHandler{
             title:title,
             description: 'description field is not implemented yet',
             mainImage: mainImage,
-            mainCategory: mainCategory,
+            mainCategory: JSON.stringify(mainCategory),
             categories: JSON.stringify(categories),
             contents: JSON.stringify(contents)
         }
@@ -40,8 +40,8 @@ export default class ActionsHandler{
     }
     async action(action,data){
         let formData = new FormData;
-        Object.entries(data).forEach(entrie=>{
-            formData.append(entrie[0],entrie[1]);
+        Object.entries(data).forEach(entry=>{
+            formData.append(entry[0],entry[1]);
         });
         formData.append('action',action)
         let dataObject ={};

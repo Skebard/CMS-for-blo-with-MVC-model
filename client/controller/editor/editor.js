@@ -5,26 +5,8 @@ import TagsHandler from './modules/tagsHandler.js';
 import ActionsHandler from './modules/ActionsHandler.js';
 
 
-//** TEST **/
 let ah = new ActionsHandler;
-let content1 = {
-    'type': 'text',
-    'content': 'to start with this project you should',
-    'position': '1'
-};
-let content2 = {
-    'type': 'subtitle',
-    'content': 'Example',
-    'position': '2'
-};
-let content3 = {
-    'type': 'code',
-    'content': 'some amazing JS',
-    'position': '3'
-};
-let contents = [content1,content2,content3];
 
-//ah.action('create', 'hello is the latest published post', 'Skebard', contents);
 
 
 
@@ -137,7 +119,8 @@ publishBtn.addEventListener('click',e=>{
 });
 
 saveBtn.addEventListener('click',e=>{
-    let mainCategory = tagHandler.mainTag;
+    let mainCategory = tagHandler.tagsNameId.filter(tag=>tag.name===tagHandler.mainTag)[0];
+    //let mainCategory = tagHandler.mainTag;
     let categories = tagHandler.selectedTags.length>0?tagHandler.selectedTags:false;
     if(categories){
         categories = categories.map(category=>tagHandler.tagsNameId.filter(tag=>tag.name===category)[0]);
@@ -168,13 +151,13 @@ saveBtn.addEventListener('click',e=>{
 
 
 async function getPost(){
-    let postTitle = window.location.href.split('?title=');
+    let postTitle = window.location.href.split('?id=');
     if(postTitle.length===2){
         postTitle = postTitle[1];
     }else{
         //window.location.replace('adminPanel.php','_self');
     }
-    let resp = await fetch('app/routes/postData.php?title='+postTitle);
+    let resp = await fetch('app/routes/postData.php?id='+postTitle);
     let data = await resp.json();
 
     //set title 
