@@ -34,13 +34,6 @@ export default class ActionsHandler{
 
 
     async action(action,data){
-        // let formData = new FormData;
-        // Object.entries(data).forEach(entry=>{
-        //     formData.append(entry[0],entry[1]);
-        // });
-        // formData.append('action',action)
-        // let dataObject ={};
-        // formData.forEach((value,key)=>{dataObject[key]=value});
         data.action = action;
 
         let dataServ = await fetch('app/routes/postData.php',{
