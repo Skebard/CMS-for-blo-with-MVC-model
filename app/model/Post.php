@@ -266,7 +266,9 @@ class Post{
             }
             array_push($params,$id,$categoryId);
         }
-        Db::execute($sql,$params);
+        if(count($categories)>0){
+            Db::execute($sql,$params);
+        }
         $sql = 'DELETE FROM htmlelements WHERE postId=?';
         Db::execute($sql,[$id]);
 

@@ -42,7 +42,6 @@ export default class ActionsHandler{
         }).then(resp=>resp.text());
         console.log(dataServ);
         console.log(JSON.parse(dataServ));
-
     }
 
     async getCategories(){

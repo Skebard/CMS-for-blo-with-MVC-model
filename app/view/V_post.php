@@ -71,6 +71,9 @@ class PostView {
         echo '<pre tabindex="0" contenteditable="true" class="'.$language.' code-wrapper"><code >'
         .$text . '</code></pre>';
     }
+    public static function printImage($url){
+        echo '<img class="post-image" src="'.$url.'">';
+    }
     public static function printContents($contents)
     {
 
@@ -85,6 +88,10 @@ class PostView {
                     break;
                 case 'code':
                     self::printCode($content['options'],$content['content']);
+                break;
+                    self::printImage($content['content']);
+                case 'image':
+                break;
                 default:
                     break;
             }
