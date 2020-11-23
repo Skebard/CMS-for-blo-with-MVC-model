@@ -36,6 +36,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         BlogController::withdrawPost($data->id);
         echo 'WITHDRAW';
     }else if($data->action === 'save'){
+        $categories = array_map(fn($cat)=>$cat->id,$data->categories);
+        $mainCategory = $data->mainCategory->id;
+        Post::updatePost($data->id,$categories,$data->description,$mainCategory,$data->mainImage,$data->title,$data->contents);
     }else{
     }
     exit;

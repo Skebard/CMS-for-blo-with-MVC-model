@@ -9,8 +9,8 @@ export default class ActionsHandler{
             title:title,
             description: 'description field is not implemented yet',
             mainImage: mainImage,
-            mainCategory: JSON.stringify(mainCategory),
-            categories: JSON.stringify(categories),
+            mainCategory: mainCategory,
+            categories: categories,
             contents: contents
         }
         console.log(data);

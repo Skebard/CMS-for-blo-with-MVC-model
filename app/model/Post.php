@@ -245,7 +245,46 @@ class Post{
             return true;
         }
     }
-    public static function updatePost(int $id,array $categories,string $description, $mainCategory,$mainImage,$title ){
+    public static function updatePost(int $id,array $categories,string $description, $mainCategory,$mainImage,$title,$contents ){
+        $sql = 'UPDATE posts
+                SET title=?,description=?, mainImage=?,mainCategory=?,lastModificationDate =CURRENT_TIMESTAMP
+                WHERE id=?';
+        Db::execute($sql,[$title,$description,$mainImage,$mainCategory,$id]);
+        //execute
+
+        //set categories
+        $categories = array_filter($categories,fn($cat)=>$cat!==$mainCategory);
+        //delete all categories and insert the new ones
+        $sql = 'DELETE FROM postCategories WHERE postId=?';
+        Db::execute($sql,[$id]);
+        $sql = 'INSERT INTO postCategories (postId,categoryId) VALUES ';
+        $params=[];
+        foreach($categories as $categoryId){
+            $sql .= ' (?,?)';
+            if ($categoryId !== end($categories)){
+                $sql .=',';
+            }
+            array_push($params,$id,$categoryId);
+        }
+        Db::execute($sql,$params);
+        $sql = 'DELETE FROM htmlelements WHERE postId=?';
+        Db::execute($sql,[$id]);
+
+
+        $sql = "";
+        $contentData = [];
+        foreach ($contents as $content) {
+            if ($content->type === 'code') {
+                $sql .= 'INSERT INTO htmlelements(type,content,position,postId,options)
+                VALUES (?,?,?,?,?);';
+                array_push($contentData, $content->type, $content->content, $content->pos, $id, $content->lang);
+            } else {
+                $sql .= 'INSERT INTO htmlelements(type,content,position,postId)
+                VALUES (?,?,?,?);';
+                array_push($contentData, $content->type, $content->content, $content->pos, $id);
+            }
+        }
+        Db::execute($sql,$contentData);
 
     }
 }
