@@ -13,7 +13,7 @@ let ah = new ActionsHandler;
 
 
 //*** DATA ***/
-let availableContentTypes = ['subtitle', 'subtitle2', 'text', 'image', 'code'];
+let availableContentTypes = ['subtitle', 'subtitle2', 'text', 'image', 'code','resources'];
 let availableModificators = ['link', 'bold', 'cursive'];
 let availableModificators2 = [{
     name: 'link',
@@ -130,7 +130,7 @@ saveBtn.addEventListener('click',e=>{
     Box.getBoxes().forEach(box=>{
         let dataObj = {
             type: box.type,
-            content: box.box.querySelector('.box-content').innerHTML,
+            content: box.getContent(),
             pos: box.pos
         }
         if(box.type ==='code'){
@@ -176,7 +176,20 @@ async function getPost(){
     let postContents = data.postContents.sort((a,b)=>a.position-b.position);
     postContents.forEach(section=>{
         let a = new Box(section.type);
-        a.boxContentElement.innerHTML = section.content;
+        if(section.type==='resources'){
+            let tmpContainer = document.createElement('div');
+            tmpContainer.innerHTML = section.content;
+            let strContent = "";
+            Array.from(tmpContainer.children).forEach((child)=>{
+                let name = child.textContent;
+                let link = child.href;
+                strContent +=`<div><input type="text" placeholder="Name" value="${name}"><input type="text" placeholder="Link" value="${link}"></div>`
+            });
+            section.content = strContent;
+            a.boxContentElement.insertAdjacentHTML('afterbegin',strContent);
+        }else{
+            a.boxContentElement.innerHTML = section.content;
+        }
     })
 
  

@@ -1,5 +1,5 @@
 <?php
-define('EXPIRING_TIME',10);
+define('EXPIRING_TIME',30);
 class Session{
 
     public static function delete(){

@@ -117,7 +117,17 @@ export default class Box {
         boxHeader.append(arrows, rightContainer);
         let boxContent = document.createElement('div');
         boxContent.classList.add('box-content');
-        boxContent.setAttribute('contenteditable', true);
+        if(this.type==='resources'){
+            boxContent.appendChild(this.addResource());
+            let btnAddResource = document.createElement('button');
+            btnAddResource.textContent = 'Add Resource';
+            btnAddResource.addEventListener('click',()=>{
+                btnAddResource.insertAdjacentElement('beforebegin',this.addResource());
+            });
+            boxContent.appendChild(btnAddResource);
+        }else{
+            boxContent.setAttribute('contenteditable', true);
+        }
         box.append(boxHeader, boxContent);
         this.boxContentElement = boxContent;
         return box;
@@ -228,10 +238,33 @@ export default class Box {
         Box.prototype.boxes = Box.prototype.boxes.filter(b=>b!=this);
     }
 
+
     getContent(){
         if(this.type==='resources'){
-
+            //we want to return an anchor with the link in the href
+            let resources='';
+            let content = this.box.querySelectorAll('.box-content>div');
+            content.forEach((c)=>{
+                let name = c.children[0].value.trim();
+                let link = c.children[1].value.trim();
+                if(link !=='' && name !==''){
+                    resources += `<a href="${link}">${name}</a>`;
+                }
+            });
+            return resources;
         }
-        return this.box.querySelector('.box-content').innerHTML
+        return this.box.querySelector('.box-content').innerHTML;
+    }
+
+    addResource(){
+        let container = document.createElement('div');
+        let name = document.createElement('input');
+        name.type = 'text';
+        name.placeholder='Name'
+        let link = document.createElement('input');
+        link.type='text';
+        link.placeholder='Link'
+        container.append(name,link);
+        return container;
     }
 }

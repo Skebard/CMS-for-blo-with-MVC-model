@@ -54,7 +54,7 @@ class Db
         } catch (PDOException $e) {
 
             //1049 is the code for unknown database  list of codes in: https://mariadb.com/kb/en/mariadb-error-codes/
-            if ($e->getCode() ===1049 && CONFIG::DATABASE_ON_ERROR_CONNECTION_CREATE === true) {
+            if ($e->getCode() ===1049 && CONFIG::DATABASE_ON_ERROR_CONNECTION_CREATE) {
                 if($this->createDb()){
                     if($this->createTables()){
                         $this->insertInitialData();

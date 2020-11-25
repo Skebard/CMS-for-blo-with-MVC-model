@@ -74,6 +74,10 @@ class PostView {
     public static function printImage($url){
         echo '<img class="post-image" src="'.$url.'">';
     }
+    public static function printResources($text){
+        echo '<div class="resources">'.$text.'</div>';
+    }
+
     public static function printContents($contents)
     {
 
@@ -92,6 +96,9 @@ class PostView {
 
                 case 'image':
                     self::printImage($content['content']);
+                break;
+                case 'resources':
+                    self::printResources($content['content']);
                 break;
                 default:
                     break;
