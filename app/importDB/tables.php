@@ -84,4 +84,16 @@ $authors = 'CREATE TABLE authors(
     UNIQUE (email)
     )';
 
+// Table to track login attempts
+$login = 'CREATE TABLE login (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    ip_address VARCHAR(22) NOT NULL,
+    attempts INT UNSIGNED NOT NULL,
+    last_attempt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(ip_address)
+)';
+
+
+
+
 $tables = [$categories,$authors,$posts,$postCategories,$comments,$htmlElements];

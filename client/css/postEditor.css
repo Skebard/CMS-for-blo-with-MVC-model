@@ -1,3 +1,8 @@
+html body.light{
+    background-color: white;
+    color:black;
+}
+
 .title-container {
     margin-bottom: 1rem;
 }
@@ -60,6 +65,7 @@ html .hidden {
 
 .category-tags {
     display: flex;
+    margin-bottom:0;
 }
 
 .category-tags>li {
@@ -188,9 +194,11 @@ html .hidden {
     text-align: left;
     width: 100%;
     padding: 1rem;
-    border: 1px solid red;
-    border-radius: 1rem;
+    border: 2px solid transparent;
     margin-bottom: 0.5rem;
+}
+.box:hover{
+    border:2px solid black;
 }
 
 .box-header {

@@ -1,4 +1,12 @@
 
+<?php 
+require __DIR__.'/app/Utility/Session.php';
+session_start();
+$tokenCsrf = md5(uniqid(rand(),true));
+Session::put('csrf',$tokenCsrf);
+
+
+?>
     <!DOCTYPE html>
     <hmtl lang='en'>
         <head>
@@ -26,16 +34,16 @@
 
                 <div class="col-lg-12 login-form">
                     <div class="col-lg-12 login-form">
-                        <form>
+                        <form method='post' action='app/controller/C_login.php'>
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name='username'  value="<?= $_GET['username']??''; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">PASSWORD</label>
-                                <input type="password" class="form-control" i>
+                                <input type="password" class="form-control" name='password' required>
                             </div>
-
+                            <input type='hidden' name="token_csrf" value="<?= $_SESSION['csrf']?>">
                             <div class="col-lg-12 loginbttm">
                                 <div class="col-lg-6 login-btm login-text">
                                     <!-- Error Message -->

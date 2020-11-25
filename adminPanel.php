@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+require 'app/Utility/Session.php';
+
+if(!Session::checkSession()){
+    header('Location: adminLogin.php');
+    exit;
+}
 require __DIR__ . '/app/view/templates/adminHeader.php';
 ?>
 
@@ -22,7 +30,7 @@ require __DIR__ . '/app/view/templates/adminHeader.php';
             <div class="wrapper">
                 <?php
                 require_once __DIR__ . '/app/controller/C_adminPanel.php';
-                $admPanCon = new AdminPanelController(1);
+                $admPanCon = new AdminPanelController(intval($_SESSION['authorId']));
                 $admPanCon->generateTables();
 
                 ?>

@@ -1,5 +1,11 @@
 <?php
+session_start();
+require 'app/Utility/Session.php';
 
+if(!Session::checkSession()){
+    header('Location: adminLogin.php');
+    exit;
+}
 $page = $_GET['page'] ?? null;
 require __DIR__.'/app/view/templates/adminHeader.php';
 

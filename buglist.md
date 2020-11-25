@@ -4,3 +4,4 @@
 3. When sending code if the programming language selection have not been selected the default value is not send to the server
 4. When saving without any secondary category there is a sql error in the server  --FIXED
 5. Many errors when sending empty fields (as in 4).
+6. When loading the editor the right code language is not selected. For example you saved code in PHP then you refresh  the editor and in the select it will appear javascript (but it will be saved as PHP).

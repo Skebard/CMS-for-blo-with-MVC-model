@@ -1,4 +1,11 @@
 <?php
+session_start();
+require 'app/Utility/Session.php';
+
+if(!Session::checkSession()){
+    header('Location: adminLogin.php');
+    exit;
+}
 require_once __DIR__.'/app/view/templates/adminHeader.php';
 $id = $_GET['id'] ?? ' invalid';
 //echo '<h1>Editor '.$id.'</h1>';

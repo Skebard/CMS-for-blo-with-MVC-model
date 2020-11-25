@@ -89,8 +89,9 @@ class PostView {
                 case 'code':
                     self::printCode($content['options'],$content['content']);
                 break;
-                    self::printImage($content['content']);
+
                 case 'image':
+                    self::printImage($content['content']);
                 break;
                 default:
                     break;

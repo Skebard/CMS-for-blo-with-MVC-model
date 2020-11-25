@@ -61,6 +61,7 @@ body header{
 }
 
 .main-content {
+    padding-top:2rem;
     margin-left: 1rem;
     flex-grow: 1;
 }
@@ -84,6 +85,7 @@ body header{
     min-width: fit-content;
     border-right:1px solid #9d9696;
     padding-right:1rem;
+    padding-top:2rem;
 }
 
 .sidebar li {
@@ -174,9 +176,9 @@ body header{
 
 /*** TABLE ***/
 main{
-    margin-top:2rem;
     padding: 0 1rem;
 }
+
 .row > div{
     width:33%;
 }

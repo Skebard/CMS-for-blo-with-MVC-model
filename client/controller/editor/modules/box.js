@@ -91,6 +91,7 @@ export default class Box {
         rightContainer.classList.add('right-container');
         let type = document.createElement('span');
         type.classList.add('content-type');
+        type.classList.add('noselect');
         type.classList.add("type-"+this.type);
         type.textContent = this.type;
         let trash = document.createElement('i');
