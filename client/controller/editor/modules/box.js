@@ -227,4 +227,11 @@ export default class Box {
         this.box.remove();
         Box.prototype.boxes = Box.prototype.boxes.filter(b=>b!=this);
     }
+
+    getContent(){
+        if(this.type==='resources'){
+
+        }
+        return this.box.querySelector('.box-content').innerHTML
+    }
 }

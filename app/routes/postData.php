@@ -30,17 +30,19 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         exit;
     }else if($data->action === 'publish'){
         BlogController::publishPost($data->id);
-        echo 'PUBLISH';
+        $response->completed = true;
 
     }else if($data->action ==='withdraw'){
         BlogController::withdrawPost($data->id);
-        echo 'WITHDRAW';
+        $response->completed = true;
     }else if($data->action === 'save'){
         $categories = array_map(fn($cat)=>$cat->id,$data->categories);
         $mainCategory = $data->mainCategory->id;
         Post::updatePost($data->id,$categories,$data->description,$mainCategory,$data->mainImage,$data->title,$data->contents);
+        $response->completed = true;
     }else{
     }
+    echo json_encode($response);
     exit;
     // we get the author from the session
 

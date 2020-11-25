@@ -28,6 +28,8 @@ class PostController {
         $mainCategoryName = Post::getCategoryName($this->postInfo['mainCategory']);
         PostView::printCategories($mainCategoryName,$categories);
         $contents = Post::getPostContents($this->postInfo['id']);
+        //order by position
+        uasort($contents,fn($a,$b)=>$a['position']-$b['position']);
         PostView::printContents($contents);
         $relatedPosts = Post::getRelatedPosts($this->postInfo['id'],$this->postInfo['mainCategory'],self::NUM_RELATED_POSTS);
         //var_dump($relatedPosts);
