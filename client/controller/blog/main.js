@@ -27,5 +27,14 @@ let searchInput = document.getElementById('search-input-id');
         }
     })
 
+    $(window).scroll(function(){
+        if($(window).scrollTop() + $(window).height() > $("#posts-container-id").height())
+        {
+        loadMoreBtn.click();
+        }
+       });
+
+
+
 })();
 

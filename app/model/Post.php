@@ -240,6 +240,9 @@ class Post{
         }else{
             $sql = 'UPDATE posts
             SET STATUS   = ?,lastModificationDate = CURRENT_TIMESTAMP';
+            if($status === 'published'){
+                $sql .= ',publishingDate = CURRENT_TIMESTAMP';
+            }
             $sql .= ' WHERE id =?';
             Db::execute($sql,[$status,$id]);
             return true;

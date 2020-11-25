@@ -126,8 +126,9 @@ footer {
     justify-content:center;
     padding:0.5rem;
     width: 100%;
-    background-color: red;
-
+    background-color: rgb(255, 191, 104);
+    border-top-right-radius: 4rem;
+    border-top-left-radius: 4rem;
 }
 
 /*** end main layout ***/
@@ -294,7 +295,7 @@ header:after {
     padding: 0.6rem;
 }
 
-.categories-tags a:hover {
+.categories-tags li:hover {
     background-color: rgb(255, 149, 104);
 }
 /*** end category tags ***/

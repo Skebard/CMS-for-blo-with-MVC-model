@@ -38,6 +38,7 @@ export default class Blog {
         this.text = '';
         this.hello = 0;
         this.offset = 0;
+        this.finished = false;
         this.clickableElements = []; //array of objects with clickable elements and its respective post Id
         this.#addContainerEvent();
     }
@@ -110,7 +111,7 @@ export default class Blog {
     //displays more posts
     async loadMore() {
         //avoid multiple calls to the server (imagine that the user starts clicking many times to the button)
-        if (this.loading) {
+        if (this.loading || this.finished) {
             return false;
         }
         this.loading = true;
@@ -134,6 +135,7 @@ export default class Blog {
         this.hideLoading();
         if (response.results.length < POSTS_PER_PAGE) {
             console.log('finish');
+            this.finished = true;
             this.btnLoadMore.classList.add('hidden');
             return false;
         }
@@ -153,6 +155,7 @@ export default class Blog {
             newCategory.addEventListener('click', e => {
                 this.modeText = false; 
                 this.offset = 0;
+                this.finished = false;
                 this.category = category;
                 this.container.innerHTML = "";
                 this.loadMore();
@@ -183,6 +186,7 @@ export default class Blog {
         if(this.text===text){
             return false;
         }
+        this.finished = false;
         if(!this.modeText || this.text!==text){
             this.modeText = true;
             this.offset = 0;
