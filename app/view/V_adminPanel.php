@@ -20,7 +20,7 @@ class AdminPanelView{
             if($post['STATUS']!='published'){
                 continue;
             }
-            $params = [$post['title'],$post['publishingDate'],$post['creationDate']];
+            $params = [$post['title'],$post['lastModificationDate'],$post['creationDate']];
             $html .= $this->createRow($params,$post['id']);
         }
         $html .='</div>';

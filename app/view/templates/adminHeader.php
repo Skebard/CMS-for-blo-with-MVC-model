@@ -42,6 +42,10 @@ if($_SERVER['PHP_SELF']){
         <a href='adminSettings.php'> <i class="fas fa-cog"></i></a>
             <div class='profile-icon'>
                 <img src='https://i.imgur.com/wIHZKq1.png'>
+                <div class='logout-wrapper'>
+                    <a href='app/controller/C_logout.php'>Logout   <i class="fas fa-sign-out-alt"></i></a>
+                    
+                </div>
             </div>
         </div>
 

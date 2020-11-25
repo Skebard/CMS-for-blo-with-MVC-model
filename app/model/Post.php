@@ -238,9 +238,9 @@ class Post{
         if(!in_array($status,self::STATUS)){
             throw new Exception('Status: '.$status.' doest not exist');
         }else{
-            $sql = 'UPDATE posts 
-            SET STATUS   = ?
-            WHERE id =?';
+            $sql = 'UPDATE posts
+            SET STATUS   = ?,lastModificationDate = CURRENT_TIMESTAMP';
+            $sql .= ' WHERE id =?';
             Db::execute($sql,[$status,$id]);
             return true;
         }
