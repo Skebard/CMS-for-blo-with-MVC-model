@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__."/../model/Post.php";
+require_once __DIR__."/../model/Blog.php";
 require_once __DIR__."/../view/V_adminPanel.php";
 
 class AdminPanelController{
@@ -22,6 +23,7 @@ class AdminPanelController{
     }
 
     public function generateCategoryOptions(){
-        
+        $this->categories = Blog::getCategories();
+        $this->view->printCategoryOptions($this->categories);
     }
 }

@@ -44,21 +44,19 @@ require __DIR__ . '/app/view/templates/adminHeader.php';
 <div id='modal-create-post-id' class='modal hidden'>
     <div class='my-modal-content'>
         <h2>New post</h2>
-        <form id='create-post-form-id'>
+        <form action="app/routes/postData.php" method="post" id='create-post-form-id'>
             <label>Title</label>
-            <input name='post-title' type="text">
+            <input placeholder='Your title' name='title' type="text">
             <label>Main Image</label>
-            <input type='text'>
+            <input name='mainImage' type='text'>
             <label>Main Category</label>
-            <select>
+            <select name='mainCategory'>
                 <?php
+                $admPanCon->generateCategoryOptions();
                 ?>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
             </select>
             <label>Description</label>
-            <textarea type='text' rows='3'></textarea>
+            <textarea name='description' type='text' rows='3'></textarea>
             <div class='form-btns'>
             <button id='cancel-id' class='btn-cancel'> cancel</button>
             <input  class='btn-create' type="submit" value='Create'>

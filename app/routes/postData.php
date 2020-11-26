@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../controller/C_blog.php';
 require_once '../utils.php';
 require_once '../model/Post.php';
@@ -17,8 +18,16 @@ require_once '../model/Post.php';
  */
 
 $response = new stdClass;
+$response->completed = false;
 //create new post
 if($_SERVER['REQUEST_METHOD']==='POST'){
+    if(isset($_POST['title'],$_POST['mainImage'],$_POST['description'],$_POST['mainCategory'])){
+        BlogController::createPost($_POST['title'],$_POST['mainImage'],$_POST['description'],$_POST['mainCategory']);
+        $response->completed = true;
+    }
+    echo json_encode($response);
+
+    exit;
 
 //Update post
 }else if($_SERVER['REQUEST_METHOD']==='PUT'){

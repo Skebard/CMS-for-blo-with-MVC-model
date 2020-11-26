@@ -71,4 +71,10 @@ class AdminPanelView{
         $html .= '</div>';
         return $html;
     }
+
+    public function printCategoryOptions($categories){
+        foreach($categories as $category){
+            echo "<option value='".$category['id']."' >".$category['name']."</option>";
+        }
+    }
 }
