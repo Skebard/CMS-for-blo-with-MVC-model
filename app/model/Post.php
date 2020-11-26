@@ -217,12 +217,15 @@ class Post{
                 }
                 return true;
             }));
-            while($numPosts>0 && count($newPosts)>0){
+            while($numPosts>0 && count($newPosts)>0 ){
                 $numPosts--;
-                array_push($relatedPosts,$newPosts[$numPosts]);
-                unset($newPosts[$numPosts]);
+                if(isset($newPosts[$numPosts])){
+                    array_push($relatedPosts,$newPosts[$numPosts]);
+                    unset($newPosts[$numPosts]);
+                }
             }
         }
+        $relatedPosts = array_values(array_filter($relatedPosts,fn($post)=>$post!==null));
         return $relatedPosts;
     }
 

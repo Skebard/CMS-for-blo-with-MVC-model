@@ -25,6 +25,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         BlogController::createPost($_POST['title'],$_POST['mainImage'],$_POST['description'],$_POST['mainCategory']);
         $response->created = true;
         $response->completed = true;
+        $response->data = $_POST;
     }
     echo json_encode($response);
 

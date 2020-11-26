@@ -79,7 +79,7 @@ $authors = 'CREATE TABLE authors(
     lastName2 VARCHAR(30) NOT NULL,
     birthdate DATETIME,
     profileImage VARCHAR(3000),
-    email VARCHAR (150),
+    email VARCHAR (150) NOT NULL,
     UNIQUE (username),
     UNIQUE (email)
     )';

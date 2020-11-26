@@ -17,7 +17,6 @@
 
 
     <?php
-
 if($_SERVER['PHP_SELF']){
     
     echo '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">';
@@ -41,7 +40,7 @@ if($_SERVER['PHP_SELF']){
         <div class='right-header'>
         <a href='adminSettings.php'> <i class="fas fa-cog"></i></a>
             <div class='profile-icon'>
-                <img src='https://i.imgur.com/wIHZKq1.png'>
+                <img src='<?= $_SESSION['profileImage'] ?? 'https://i.imgur.com/wIHZKq1.png'?>'>
                 <div class='logout-wrapper'>
                     <a href='app/controller/C_logout.php'>Logout   <i class="fas fa-sign-out-alt"></i></a>
                     

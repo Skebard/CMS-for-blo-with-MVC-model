@@ -33,11 +33,14 @@ if($_SERVER['REQUEST_METHOD']!=='POST'){
         header('Location: ../../adminLogin.php?username='.$username);
         exit;
     }
-    $authorId = Author::getAuthorId($username);
+    $author = new Author($username);
+    $authorId = $author->getAuthorId();
+    $profileImage = $author->getProfileImage();
     echo $authorId;
     Session::put('authorId',$authorId);
     Session::put('logged',true);
     Session::put('expire',time()+EXPIRING_TIME*60);
+    Session::put('profileImage',$profileImage);
     //redirect to the adminPanel
     header('Location: ../../adminPanel.php');
     exit;
