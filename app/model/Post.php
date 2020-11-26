@@ -206,17 +206,21 @@ class Post{
         if(count($relatedPosts) < $numRelatedPosts){
             $numPosts = $numRelatedPosts-count($relatedPosts);
             $morePosts = Post::getPosts('published',$numRelatedPosts); // we take more results than needed for the case that we will get the ones that already got before
-            $newPosts = array_values(array_filter($morePosts,function($post)use($relatedPosts){
+            $newPosts = array_values(array_filter($morePosts,function($post)use($relatedPosts,$id){
                 foreach($relatedPosts as $relPost){
                     if($relPost['id']===$post['id']){
                         return false;
                     }
                 }
+                if($post['id']==$id){
+                    return false;
+                }
                 return true;
             }));
-            while($numPosts>0){
+            while($numPosts>0 && count($newPosts)>0){
                 $numPosts--;
                 array_push($relatedPosts,$newPosts[$numPosts]);
+                unset($newPosts[$numPosts]);
             }
         }
         return $relatedPosts;

@@ -23,6 +23,7 @@ $response->completed = false;
 if($_SERVER['REQUEST_METHOD']==='POST'){
     if(isset($_POST['title'],$_POST['mainImage'],$_POST['description'],$_POST['mainCategory'])){
         BlogController::createPost($_POST['title'],$_POST['mainImage'],$_POST['description'],$_POST['mainCategory']);
+        $response->created = true;
         $response->completed = true;
     }
     echo json_encode($response);

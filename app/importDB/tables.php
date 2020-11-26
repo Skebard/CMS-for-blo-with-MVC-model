@@ -5,11 +5,11 @@
 
 
 $htmlElements = 'CREATE TABLE htmlElements(
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     type VARCHAR(100) NOT NULL,
     content TEXT NOT NULL,
     position INT(6) NOT NULL,
-    postId INT(6) UNSIGNED NOT NULL,
+    postId BIGINT UNSIGNED NOT NULL,
     options CHAR(50) DEFAULT "javascript",
     UNIQUE(position,postId),
     CONSTRAINT fk_ph_post_id
@@ -19,7 +19,7 @@ $htmlElements = 'CREATE TABLE htmlElements(
     );';
 
 $posts = 'CREATE TABLE posts(
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     mainImage VARCHAR(1000),
     description VARCHAR (1000),
@@ -28,7 +28,7 @@ $posts = 'CREATE TABLE posts(
     creationDate DATETIME DEFAULT CURRENT_TIMESTAMP,
     publishingDate DATETIME,
     lastModificationDate DATETIME DEFAULT CURRENT_TIMESTAMP,
-    authorId INT(6) UNSIGNED NOT NULL,
+    authorId BIGINT UNSIGNED NOT NULL,
     mainCategory INT(6) UNSIGNED NOT NULL,
     UNIQUE(title),
         FOREIGN KEY (authorId)
@@ -45,8 +45,8 @@ $categories = 'CREATE TABLE categories(
     );';
 
 $postCategories = 'CREATE TABLE postCategories (
-    id INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    postId INT(6) UNSIGNED NOT NULL,
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    postId BIGINT UNSIGNED NOT NULL,
     categoryId INT(6) UNSIGNED NOT NULL,
     UNIQUE(postId,categoryId),
         FOREIGN KEY (postId)
@@ -71,7 +71,7 @@ $comments = 'CREATE TABLE comments(
         ON DELETE CASCADE
     );';
 $authors = 'CREATE TABLE authors(
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(40) NOT NULL,
     password VARCHAR(1000) NOT NULL,
     firstName VARCHAR(30) NOT NULL,
@@ -96,4 +96,4 @@ $login = 'CREATE TABLE login (
 
 
 
-$tables = [$categories,$authors,$posts,$postCategories,$comments,$htmlElements];
+$tables = [$categories,$authors,$posts,$postCategories,$htmlElements,$login];

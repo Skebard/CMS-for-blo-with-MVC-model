@@ -46,11 +46,11 @@ require __DIR__ . '/app/view/templates/adminHeader.php';
         <h2>New post</h2>
         <form action="app/routes/postData.php" method="post" id='create-post-form-id'>
             <label>Title</label>
-            <input placeholder='Your title' name='title' type="text">
+            <input placeholder='Your title' name='title' type="text" required>
             <label>Main Image</label>
-            <input name='mainImage' type='text'>
+            <input name='mainImage' type='text' required>
             <label>Main Category</label>
-            <select name='mainCategory'>
+            <select name='mainCategory' required>
                 <?php
                 $admPanCon->generateCategoryOptions();
                 ?>

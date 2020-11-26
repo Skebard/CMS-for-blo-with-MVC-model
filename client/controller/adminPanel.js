@@ -8,6 +8,16 @@ createPostBtn.addEventListener('click',e=>{
     modalCreatePost.classList.remove('hidden');
 });
 
+createPostForm.addEventListener('submit',async e=>{
+    // e.preventDefault();
+    // let data = new FormData(createPostForm);
+    // let resp = await fetch('app/routes/postData.php',{
+    //     method:'post',
+    //     body:data
+    // });
+    // let dataResp = await resp.text();
+    // console.log(dataResp);
+});
 
 body.addEventListener('click',e=>{
     console.log(e.target);

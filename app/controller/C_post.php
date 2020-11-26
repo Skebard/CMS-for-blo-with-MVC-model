@@ -32,7 +32,7 @@ class PostController {
         uasort($contents,fn($a,$b)=>$a['position']-$b['position']);
         PostView::printContents($contents);
         $relatedPosts = Post::getRelatedPosts($this->postInfo['id'],$this->postInfo['mainCategory'],self::NUM_RELATED_POSTS);
-        //var_dump($relatedPosts);
+        // var_dump($relatedPosts);
         foreach($relatedPosts as &$relPost){
             $relPost['authorInfo']=Post::getAuthor(['firstName','lastName1','profileImage'],null,$relPost['authorId']);
             $relPost['mainCategoryName'] = Post::getCategoryName($relPost['mainCategory']);
