@@ -42,12 +42,28 @@ require __DIR__ . '/app/view/templates/adminHeader.php';
 
 </main>
 <div id='modal-create-post-id' class='modal hidden'>
-    <div class='modal-content'>;
+    <div class='my-modal-content'>
+        <h2>New post</h2>
         <form id='create-post-form-id'>
+            <label>Title</label>
             <input name='post-title' type="text">
-            <input type="submit" value='Create'>
+            <label>Main Image</label>
+            <input type='text'>
+            <label>Main Category</label>
+            <select>
+                <?php
+                ?>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            </select>
+            <label>Description</label>
+            <textarea type='text' rows='3'></textarea>
+            <div class='form-btns'>
+            <button id='cancel-id' class='btn-cancel'> cancel</button>
+            <input  class='btn-create' type="submit" value='Create'>
+            </div>
         </form>
-        <button id='cancel-id'> cancel</button>
     </div>
 </div>
 

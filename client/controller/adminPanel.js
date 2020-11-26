@@ -1,6 +1,12 @@
 let body = document.querySelector('body');
 let createPostBtn = document.getElementById('create-post-btn-id');
+let createPostForm = document.getElementById("create-post-form-id");
+let modalCreatePost = document.getElementById("modal-create-post-id");
 
+
+createPostBtn.addEventListener('click',e=>{
+    modalCreatePost.classList.remove('hidden');
+});
 
 
 body.addEventListener('click',e=>{

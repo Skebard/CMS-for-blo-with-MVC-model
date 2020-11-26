@@ -20,4 +20,8 @@ class AdminPanelController{
         $this->view->printDraftTable();
         $this->view->printDeletedTable();
     }
+
+    public function generateCategoryOptions(){
+        
+    }
 }
