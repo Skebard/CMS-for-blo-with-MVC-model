@@ -38,14 +38,6 @@ It is intended to make the last version of this project using the Laravel framew
 ![Screenshot1](docAssets/createPost1.png)
 <br>
 
-- Admin panel
-![Screenshot1](DocAssets/images/adminPanel.png)
-<br>
-
-- Editor
-![Screenshot2](DocAssets/images/editor1.png)
-
-
 
 ### Built With
 
