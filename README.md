@@ -31,6 +31,19 @@ The major changes are in the code structure. For this project I have followed in
 
 It is intended to make the last version of this project using the Laravel framework.
 
+- Main page
+![Screenshot1](docAssets/blog.png)
+<br>
+-Create post
+![Screenshot1](docAssets/createPost1.png)
+<br>
+
+- Admin panel
+![Screenshot1](DocAssets/images/adminPanel.png)
+<br>
+
+- Editor
+![Screenshot2](DocAssets/images/editor1.png)
 
 
 
