@@ -67,10 +67,10 @@
                         <a href= <?php echo $current_file_name==='blog.php'?'#':'../blog.php';?>>Blog</a>
                     </li>
                     <li  <?php echo $current_file_name==='about.php'?'class="active"':''; ?>>
-                    <a href= <?php echo $current_file_name==='about.php'?'#':'../about.php';?>>About</a>
+                    <a href='#'>About</a>
                     </li>
                     <li <?php echo $current_file_name==='contact.php'?'class="active"':''; ?>>
-                    <a href= <?php echo $current_file_name==='contact.php'?'#':'../contact.php';?>>Contact</a>
+                    <a  href='#'>Contact</a>
                     </li>
                 </ul>
             </div>

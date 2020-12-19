@@ -10,7 +10,6 @@ $page = $_GET['page'] ?? null;
 require __DIR__.'/app/view/templates/adminHeader.php';
 
 ?>
-
 <main class="">
 <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
@@ -90,5 +89,8 @@ require __DIR__.'/app/view/templates/adminHeader.php';
 
     </main>
 </body>
+<script defer>
+    window.alert('This part is still under development');
+</script>
 
 </html>

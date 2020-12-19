@@ -120,7 +120,7 @@ class Post{
             UNION
             SELECT * FROM posts WHERE id IN (
                 SELECT postId
-                FROM htmlelements
+                FROM htmlElements
                 WHERE content LIKE "'. $likeText . '"
                 GROUP BY postId
             )
@@ -279,7 +279,7 @@ class Post{
         if(count($categories)>0){
             Db::execute($sql,$params);
         }
-        $sql = 'DELETE FROM htmlelements WHERE postId=?';
+        $sql = 'DELETE FROM htmlElements WHERE postId=?';
         Db::execute($sql,[$id]);
 
 
@@ -287,11 +287,11 @@ class Post{
         $contentData = [];
         foreach ($contents as $content) {
             if ($content->type === 'code') {
-                $sql .= 'INSERT INTO htmlelements(type,content,position,postId,options)
+                $sql .= 'INSERT INTO htmlElements(type,content,position,postId,options)
                 VALUES (?,?,?,?,?);';
                 array_push($contentData, $content->type, $content->content, $content->pos, $id, $content->lang);
             } else {
-                $sql .= 'INSERT INTO htmlelements(type,content,position,postId)
+                $sql .= 'INSERT INTO htmlElements(type,content,position,postId)
                 VALUES (?,?,?,?);';
                 array_push($contentData, $content->type, $content->content, $content->pos, $id);
             }

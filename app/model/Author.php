@@ -24,7 +24,7 @@ class Author{
     }
     public static function register($username,$password,$firstName,$lastName,$email,$profileImage=null,$lastName2=''){
         $password = password_hash($password,PASSWORD_BCRYPT);
-        $profileImage = $profileImage ?? 'http://localhost/myProjects/CMS-for-blog-with-MVC-model/client/image/defaultAvatar.png';
+        $profileImage = $profileImage ?? '/client/image/defaultAvatar.png';
         $sql='INSERT INTO authors (username,password,firstName,lastName1,lastName2,profileImage,email)
             VALUES (?,?,?,?,?,?,?)';
         $stmt = Db::execute($sql,[$username,$password,$firstName,$lastName,$lastName2,$profileImage,$email]);
