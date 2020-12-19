@@ -34,8 +34,9 @@ It is intended to make the last version of this project using the Laravel framew
 - Main page
 ![Screenshot1](docAssets/blog.png)
 <br>
--Create post
-![Screenshot1](docAssets/createPost1.png)
+- Create post
+
+![Screenshot2](docAssets/createPost1.png)
 <br>
 
 
