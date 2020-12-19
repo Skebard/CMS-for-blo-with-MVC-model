@@ -8,6 +8,9 @@
 
 
   <h1 align="center">CMS FOR A BLOG </h1>
+  <p align='center'>
+  <a href='https://tonijorda.com/myProjects/PHP/blogCMS/blog.php'>View Demo</a>
+  </p>
 </p>
 
 
@@ -20,12 +23,13 @@
 Control management system for a blog. It allows to create, edit, publish and withdraw posts. This is the continuation of a previous project that can be found
     <a href="https://github.com/Skebard/simple-CMS-for-blog">here.</a>
 This version does present the following new features:
-- Login
+- Login (with csrf token)
 - More options for the post editor
+
 
 The major changes are in the code structure. For this project I have followed in part the MVC model. In general the code is better structured but it does not follow the MVC at 100%.
 
-It is intended to make a last version of this project using the Laravel framework.
+It is intended to make the last version of this project using the Laravel framework.
 
 
 
