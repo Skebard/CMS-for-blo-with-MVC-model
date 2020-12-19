@@ -120,7 +120,7 @@ class Post{
             UNION
             SELECT * FROM posts WHERE id IN (
                 SELECT postId
-                FROM htmlelements
+                FROM htmlElements
                 WHERE content LIKE "'. $likeText . '"
                 GROUP BY postId
             )
@@ -175,7 +175,7 @@ class Post{
      */
     public static function getPostCategories(int $id){
         $sql='SELECT * FROM categories
-                WHERE id IN ( SELECT categoryId FROM postcategories
+                WHERE id IN ( SELECT categoryId FROM postCategories
                                 WHERE postId=? AND categoryId NOT IN(
                                     SELECT mainCategory FROM posts
                                     WHERE id=?))';
@@ -206,19 +206,26 @@ class Post{
         if(count($relatedPosts) < $numRelatedPosts){
             $numPosts = $numRelatedPosts-count($relatedPosts);
             $morePosts = Post::getPosts('published',$numRelatedPosts); // we take more results than needed for the case that we will get the ones that already got before
-            $newPosts = array_values(array_filter($morePosts,function($post)use($relatedPosts){
+            $newPosts = array_values(array_filter($morePosts,function($post)use($relatedPosts,$id){
                 foreach($relatedPosts as $relPost){
                     if($relPost['id']===$post['id']){
                         return false;
                     }
                 }
+                if($post['id']==$id){
+                    return false;
+                }
                 return true;
             }));
-            while($numPosts>0){
+            while($numPosts>0 && count($newPosts)>0 ){
                 $numPosts--;
-                array_push($relatedPosts,$newPosts[$numPosts]);
+                if(isset($newPosts[$numPosts])){
+                    array_push($relatedPosts,$newPosts[$numPosts]);
+                    unset($newPosts[$numPosts]);
+                }
             }
         }
+        $relatedPosts = array_values(array_filter($relatedPosts,fn($post)=>$post!==null));
         return $relatedPosts;
     }
 
@@ -272,7 +279,7 @@ class Post{
         if(count($categories)>0){
             Db::execute($sql,$params);
         }
-        $sql = 'DELETE FROM htmlelements WHERE postId=?';
+        $sql = 'DELETE FROM htmlElements WHERE postId=?';
         Db::execute($sql,[$id]);
 
 
@@ -280,11 +287,11 @@ class Post{
         $contentData = [];
         foreach ($contents as $content) {
             if ($content->type === 'code') {
-                $sql .= 'INSERT INTO htmlelements(type,content,position,postId,options)
+                $sql .= 'INSERT INTO htmlElements(type,content,position,postId,options)
                 VALUES (?,?,?,?,?);';
                 array_push($contentData, $content->type, $content->content, $content->pos, $id, $content->lang);
             } else {
-                $sql .= 'INSERT INTO htmlelements(type,content,position,postId)
+                $sql .= 'INSERT INTO htmlElements(type,content,position,postId)
                 VALUES (?,?,?,?);';
                 array_push($contentData, $content->type, $content->content, $content->pos, $id);
             }

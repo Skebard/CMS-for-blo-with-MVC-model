@@ -25,7 +25,9 @@ body header{
     color: rgb(230, 182, 93);
     font-weight:900;
     font-style: italic;
+    z-index:5;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position:relative;
 }
 
 .right-header .fa-cog{
@@ -118,8 +120,9 @@ body header{
     font-size:1.4rem;
     background-color:#27ae60;
     border-radius:1rem;
-    padding:1.5rem;
+    padding:1rem;
     transition: all 0.4s;
+    color:black;
 }
 .create-post-btn:hover{
     transform: scale(1.2);
@@ -157,8 +160,94 @@ body header{
 /*** end legend ***/
 
 /*** Create post MODAL***/
-.modal-content{
+
+body .modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+}
+
+.modal-body .close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+}
+
+.modal-body {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 2rem;
+    background-color: white;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+}
+.my-modal-content{
     z-index:99;
+    background-color:white;
+    padding:3rem;
+    border-radius:0.5rem;
+}
+
+.my-modal-content > form{
+    display:flex;
+    flex-direction:column;
+}
+.my-modal-content > form > input {
+    border-radius:0.2rem;
+    border:1px solid #9d9696;
+    margin-bottom:0.8rem;
+}
+
+.my-modal-content > form .form-btns{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.my-modal-content > form .btn-create,.my-modal-content > form .btn-cancel{
+padding:0.5rem;
+border-radius:0.2rem;
+outline:none;
+border:none;
+cursor:pointer;
+}
+.my-modal-content > form textarea{
+    width:400px;
+    outline:none;
+    margin-bottom:1rem;
+}
+
+
+.my-modal-content > form .btn-create{
+    background-color: rgb(97, 148, 231);
+}
+.my-modal-content > form .btn-cancel{
+    margin-right:0.5rem;
+
 }
 
 /*** end create post modal ***/

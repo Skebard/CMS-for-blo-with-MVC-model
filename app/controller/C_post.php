@@ -25,7 +25,7 @@ class PostController {
         $author = Post::getAuthor(['firstName','lastName1','profileImage'],null,$this->postInfo['authorId']);
         PostView::printAuthor($author['firstName'],$author['lastName1'],$author['profileImage'],$this->postInfo['publishingDate']);
         $categories = array_map(fn($cat)=>$cat['name'],Post::getPostCategories($this->postInfo['id']));
-        $mainCategoryName = Post::getCategoryName($this->postInfo['mainCategory']);
+        $mainCategoryName = Post::getCategoryName(intval($this->postInfo['mainCategory']));
         PostView::printCategories($mainCategoryName,$categories);
         $contents = Post::getPostContents($this->postInfo['id']);
         //order by position
@@ -35,7 +35,7 @@ class PostController {
         //var_dump($relatedPosts);
         foreach($relatedPosts as &$relPost){
             $relPost['authorInfo']=Post::getAuthor(['firstName','lastName1','profileImage'],null,$relPost['authorId']);
-            $relPost['mainCategoryName'] = Post::getCategoryName($relPost['mainCategory']);
+            $relPost['mainCategoryName'] = Post::getCategoryName(intval($relPost['mainCategory']));
             $relPost['mainImage'] = externalResourceExists($relPost['mainImage'])?$relPost['mainImage']:PostController::DEFAULT_POST_IMAGE;
             $relPost['authorInfo']['profileImage'] = externalResourceExists($relPost['authorInfo']['profileImage'])?$relPost['authorInfo']['profileImage']:PostController::DEFAULT_AUTHOR_PROFILE_IMAGE;
         }

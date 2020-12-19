@@ -36,6 +36,10 @@ class BlogController{
     public static function deletePost($id){
         return Post::updateStatus($id,'deleted');
     }
+    public static function createPost($title,$mainImage,$description,$mainCategory){
+        $authorId=$_SESSION['authorId'];
+        Blog::createPost($authorId,$title,$mainImage,$description,$mainCategory);
+    }
 }
 
 //var_dump(BlogController::getCategoriesNames());

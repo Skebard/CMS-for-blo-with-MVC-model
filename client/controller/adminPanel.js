@@ -1,6 +1,32 @@
 let body = document.querySelector('body');
 let createPostBtn = document.getElementById('create-post-btn-id');
+let createPostForm = document.getElementById("create-post-form-id");
+let modalCreatePost = document.getElementById("modal-create-post-id");
+let cancelNewPost = document.getElementById('cancel-id');
 
+
+cancelNewPost.addEventListener('click',()=>{
+    modalCreatePost.classList.add('hidden');
+});
+createPostBtn.addEventListener('click',e=>{
+    modalCreatePost.classList.remove('hidden');
+});
+
+createPostForm.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(e.target.classList.contains('btn-cancel')){
+        return true;
+    }
+    let data = new FormData(createPostForm);
+    let resp = await fetch('app/routes/postData.php',{
+        method:'post',
+        body:data
+    });
+    let dataResp = await resp.json();
+    if(dataResp.completed){
+        modalCreatePost.classList.add('hidden');
+    }
+});
 
 
 body.addEventListener('click',e=>{
