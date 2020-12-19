@@ -1,12 +1,12 @@
 <?php
-$initialData = "INSERT INTO authors (username, password, firstName, lastName1, lastName2,profileImage)
-VALUES ('Skebard','1234','Antonio','Jorda','Aparicio','https://i.imgur.com/XEbYUnk.jpg');
+$initialData = "INSERT INTO authors (username,email, password, firstName, lastName1, lastName2,profileImage)
+VALUES ('Skebard','ske@gmail.com','1234','Antonio','Jorda','Aparicio','https://i.imgur.com/XEbYUnk.jpg');
 
-INSERT INTO authors (username,password, firstName, lastName1, lastName2)
-VALUES ('Raopub','1234','Jose','Jorda','Quetglas');
+INSERT INTO authors (username,email,password, firstName, lastName1, lastName2)
+VALUES ('Raopub','rao@gmail.com','1234','Jose','Jorda','Quetglas');
 
-INSERT INTO authors (username, password, firstName, lastName1, lastName2)
-VALUES ('LeCat','1234','Tomeu','Calafell','Quetglas');
+INSERT INTO authors (username,email, password, firstName, lastName1, lastName2)
+VALUES ('LeCat','lecat@gmail.com','1234','Tomeu','Calafell','Quetglas');
 
 
 INSERT INTO categories(name)

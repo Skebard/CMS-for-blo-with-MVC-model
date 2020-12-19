@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']!=='POST'){
 
     require __DIR__.'/../model/Author.php';
     if(!Author::login($username,$password)){
-        header('Location: ../../adminLogin.php?username='.$username);
+        header('Location: ../../adminLogin.php?username='.$username.'&password='.$password);
         exit;
     }
     $author = new Author($username);

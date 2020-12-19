@@ -175,7 +175,7 @@ class Post{
      */
     public static function getPostCategories(int $id){
         $sql='SELECT * FROM categories
-                WHERE id IN ( SELECT categoryId FROM postcategories
+                WHERE id IN ( SELECT categoryId FROM postCategories
                                 WHERE postId=? AND categoryId NOT IN(
                                     SELECT mainCategory FROM posts
                                     WHERE id=?))';
